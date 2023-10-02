@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TarodevController {
+namespace TarodevController
+{
     /// <summary>
     /// Hey!
     /// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
@@ -10,7 +11,8 @@ namespace TarodevController {
     /// if there's enough interest. You can play and compete for best times here: https://tarodev.itch.io/
     /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/GqeHHnhHpz
     /// </summary>
-    public class PlayerController : MonoBehaviour, IPlayerController {
+    public class PlayerController : MonoBehaviour, IPlayerController
+    {
         // Public for external hooks
         public Vector3 Velocity { get; private set; }
         public FrameInput Input { get; private set; }
@@ -25,10 +27,11 @@ namespace TarodevController {
         // This is horrible, but for some reason colliders are not fully established when update starts...
         private bool _active;
         void Awake() => Invoke(nameof(Activate), 0.5f);
-        void Activate() =>  _active = true;
-        
-        private void Update() {
-            if(!_active) return;
+        void Activate() => _active = true;
+
+        private void Update()
+        {
+            if (!_active) return;
             // Calculate velocity
             Velocity = (transform.position - _lastPosition) / Time.deltaTime;
             _lastPosition = transform.position;
@@ -47,13 +50,16 @@ namespace TarodevController {
 
         #region Gather Input
 
-        private void GatherInput() {
-            Input = new FrameInput {
+        private void GatherInput()
+        {
+            Input = new FrameInput
+            {
                 JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
                 JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
                 X = UnityEngine.Input.GetAxisRaw("Horizontal")
             };
-            if (Input.JumpDown) {
+            if (Input.JumpDown)
+            {
                 _lastJumpPressed = Time.time;
             }
         }
@@ -74,7 +80,8 @@ namespace TarodevController {
         private float _timeLeftGrounded;
 
         // We use these raycast checks for pre-collision information
-        private void RunCollisionChecks() {
+        private void RunCollisionChecks()
+        {
             // Generate ray ranges. 
             CalculateRayRanged();
 
@@ -82,7 +89,8 @@ namespace TarodevController {
             LandingThisFrame = false;
             var groundedCheck = RunDetection(_raysDown);
             if (_colDown && !groundedCheck) _timeLeftGrounded = Time.time; // Only trigger when first leaving
-            else if (!_colDown && groundedCheck) {
+            else if (!_colDown && groundedCheck)
+            {
                 _coyoteUsable = true; // Only trigger when first touching
                 LandingThisFrame = true;
             }
@@ -94,12 +102,14 @@ namespace TarodevController {
             _colLeft = RunDetection(_raysLeft);
             _colRight = RunDetection(_raysRight);
 
-            bool RunDetection(RayRange range) {
+            bool RunDetection(RayRange range)
+            {
                 return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, _groundLayer));
             }
         }
 
-        private void CalculateRayRanged() {
+        private void CalculateRayRanged()
+        {
             // This is crying out for some kind of refactor. 
             var b = new Bounds(transform.position, _characterBounds.size);
 
@@ -110,24 +120,30 @@ namespace TarodevController {
         }
 
 
-        private IEnumerable<Vector2> EvaluateRayPositions(RayRange range) {
-            for (var i = 0; i < _detectorCount; i++) {
+        private IEnumerable<Vector2> EvaluateRayPositions(RayRange range)
+        {
+            for (var i = 0; i < _detectorCount; i++)
+            {
                 var t = (float)i / (_detectorCount - 1);
                 yield return Vector2.Lerp(range.Start, range.End, t);
             }
         }
 
-        private void OnDrawGizmos() {
+        private void OnDrawGizmos()
+        {
             // Bounds
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(transform.position + _characterBounds.center, _characterBounds.size);
 
             // Rays
-            if (!Application.isPlaying) {
+            if (!Application.isPlaying)
+            {
                 CalculateRayRanged();
                 Gizmos.color = Color.blue;
-                foreach (var range in new List<RayRange> { _raysUp, _raysRight, _raysDown, _raysLeft }) {
-                    foreach (var point in EvaluateRayPositions(range)) {
+                foreach (var range in new List<RayRange> { _raysUp, _raysRight, _raysDown, _raysLeft })
+                {
+                    foreach (var point in EvaluateRayPositions(range))
+                    {
                         Gizmos.DrawRay(point, range.Dir * _detectionRayLength);
                     }
                 }
@@ -151,8 +167,10 @@ namespace TarodevController {
         [SerializeField] private float _deAcceleration = 60f;
         [SerializeField] private float _apexBonus = 2;
 
-        private void CalculateWalk() {
-            if (Input.X != 0) {
+        private void CalculateWalk()
+        {
+            if (Input.X != 0)
+            {
                 // Set horizontal move speed
                 _currentHorizontalSpeed += Input.X * _acceleration * Time.deltaTime;
 
@@ -163,12 +181,14 @@ namespace TarodevController {
                 var apexBonus = Mathf.Sign(Input.X) * _apexBonus * _apexPoint;
                 _currentHorizontalSpeed += apexBonus * Time.deltaTime;
             }
-            else {
+            else
+            {
                 // No input. Let's slow the character down
                 _currentHorizontalSpeed = Mathf.MoveTowards(_currentHorizontalSpeed, 0, _deAcceleration * Time.deltaTime);
             }
 
-            if (_currentHorizontalSpeed > 0 && _colRight || _currentHorizontalSpeed < 0 && _colLeft) {
+            if (_currentHorizontalSpeed > 0 && _colRight || _currentHorizontalSpeed < 0 && _colLeft)
+            {
                 // Don't walk through walls
                 _currentHorizontalSpeed = 0;
             }
@@ -183,12 +203,15 @@ namespace TarodevController {
         [SerializeField] private float _maxFallSpeed = 120f;
         private float _fallSpeed;
 
-        private void CalculateGravity() {
-            if (_colDown) {
+        private void CalculateGravity()
+        {
+            if (_colDown)
+            {
                 // Move out of the ground
                 if (_currentVerticalSpeed < 0) _currentVerticalSpeed = 0;
             }
-            else {
+            else
+            {
                 // Add downward force while ascending if we ended the jump early
                 var fallSpeed = _endedJumpEarly && _currentVerticalSpeed > 0 ? _fallSpeed * _jumpEndEarlyGravityModifier : _fallSpeed;
 
@@ -216,37 +239,45 @@ namespace TarodevController {
         private bool CanUseCoyote => _coyoteUsable && !_colDown && _timeLeftGrounded + _coyoteTimeThreshold > Time.time;
         private bool HasBufferedJump => _colDown && _lastJumpPressed + _jumpBuffer > Time.time;
 
-        private void CalculateJumpApex() {
-            if (!_colDown) {
+        private void CalculateJumpApex()
+        {
+            if (!_colDown)
+            {
                 // Gets stronger the closer to the top of the jump
                 _apexPoint = Mathf.InverseLerp(_jumpApexThreshold, 0, Mathf.Abs(Velocity.y));
                 _fallSpeed = Mathf.Lerp(_minFallSpeed, _maxFallSpeed, _apexPoint);
             }
-            else {
+            else
+            {
                 _apexPoint = 0;
             }
         }
 
-        private void CalculateJump() {
+        private void CalculateJump()
+        {
             // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            if (Input.JumpDown && CanUseCoyote || HasBufferedJump)
+            {
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
                 JumpingThisFrame = true;
             }
-            else {
+            else
+            {
                 JumpingThisFrame = false;
             }
 
             // End the jump early if button released
-            if (!_colDown && Input.JumpUp && !_endedJumpEarly && Velocity.y > 0) {
+            if (!_colDown && Input.JumpUp && !_endedJumpEarly && Velocity.y > 0)
+            {
                 // _currentVerticalSpeed = 0;
                 _endedJumpEarly = true;
             }
 
-            if (_colUp) {
+            if (_colUp)
+            {
                 if (_currentVerticalSpeed > 0) _currentVerticalSpeed = 0;
             }
         }
@@ -255,11 +286,13 @@ namespace TarodevController {
 
         #region Move
 
-        [Header("MOVE")] [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
+        [Header("MOVE")]
+        [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
         private int _freeColliderIterations = 10;
 
         // We cast our bounds before moving to avoid future collisions
-        private void MoveCharacter() {
+        private void MoveCharacter()
+        {
             var pos = transform.position;
             RawMovement = new Vector3(_currentHorizontalSpeed, _currentVerticalSpeed); // Used externally
             var move = RawMovement * Time.deltaTime;
@@ -267,23 +300,27 @@ namespace TarodevController {
 
             // check furthest movement. If nothing hit, move and don't do extra checks
             var hit = Physics2D.OverlapBox(furthestPoint, _characterBounds.size, 0, _groundLayer);
-            if (!hit) {
+            if (!hit)
+            {
                 transform.position += move;
                 return;
             }
 
             // otherwise increment away from current pos; see what closest position we can move to
             var positionToMoveTo = transform.position;
-            for (int i = 1; i < _freeColliderIterations; i++) {
+            for (int i = 1; i < _freeColliderIterations; i++)
+            {
                 // increment to check all but furthestPoint - we did that already
                 var t = (float)i / _freeColliderIterations;
                 var posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-                if (Physics2D.OverlapBox(posToTry, _characterBounds.size, 0, _groundLayer)) {
+                if (Physics2D.OverlapBox(posToTry, _characterBounds.size, 0, _groundLayer))
+                {
                     transform.position = positionToMoveTo;
 
                     // We've landed on a corner or hit our head on a ledge. Nudge the player gently
-                    if (i == 1) {
+                    if (i == 1)
+                    {
                         if (_currentVerticalSpeed < 0) _currentVerticalSpeed = 0;
                         var dir = transform.position - hit.transform.position;
                         transform.position += dir.normalized * move.magnitude;
