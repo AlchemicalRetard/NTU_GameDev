@@ -3279,8 +3279,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 56c18b8929e7a7a44bbc3a854df53b94, type: 3}
     - target: {fileID: 138395371534880730, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
+      propertyPath: _fallClamp
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 138395371534880730, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
       propertyPath: _detectionRayLength
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 138395371534880730, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
       propertyPath: _groundLayer.m_Bits

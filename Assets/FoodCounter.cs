@@ -33,7 +33,7 @@ public class FoodCounter : MonoBehaviour
     public void AddFood(int amount)
     {
         collectedFood += amount;
-        Debug.Log("Food collected: " + collectedFood);
+        Debug.Log("Food : " + collectedFood);
 
         UpdateFoodCountText();
     }
