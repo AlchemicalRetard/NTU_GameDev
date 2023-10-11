@@ -21,9 +21,9 @@ public class LevelEndTriggesr : MonoBehaviour
                     statusText.text = "Game Over!";
                 }
             }
-            else
+           if (!timer.IsTimeUp()&& FoodCounter.Instance.AllFoodCollected())
             {
-                statusText.text = "Game Over! Not in time.";
+                statusText.text = "Level Cleared!";
             }
         }
     }
