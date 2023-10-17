@@ -13,6 +13,7 @@ public class JellyConstraint : MonoBehaviour
     private Vector3[] boneVector;
     private float[] boneOriginalDiff;
     private Vector3[] tempBoneVector;
+    private SpringJoint2D[] joints;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,8 @@ public class JellyConstraint : MonoBehaviour
         }
 
         tempBoneVector = new Vector3[bones.Length];
+
+        joints = this.GetComponentsInChildren<SpringJoint2D>();
     }
 
     // TODO: stop joint when pulling back
@@ -53,7 +56,7 @@ public class JellyConstraint : MonoBehaviour
             float diff = (bones[i].position - rootBone.position).magnitude;
             if(diff - boneOriginalDiff[i] > maxRadius)
             {
-                print("pull back bone " + i);
+                // print("pull back bone " + i);
                 Vector3 velocity = Vector3.zero;
                 Vector3 target = rootBone.position + boneVector[i];
                 tempBoneVector[i] = target;
@@ -61,9 +64,21 @@ public class JellyConstraint : MonoBehaviour
                 tempBoneVector[i] = bones[i].position;
             }
         }
-        for(int i = 0; i < bones.Length; i++)
-        {
-            bones[i].position = tempBoneVector[i];
-        }
+        // if(needFix)
+        // {
+        //     foreach(var joint in joints)
+        //     {
+        //         joint.enabled = false;
+        //     }
+        // }else{
+        //     foreach(var joint in joints)
+        //     {
+        //         joint.enabled = true;
+        //     }
+        // }
+        // for(int i = 0; i < bones.Length; i++)
+        // {
+        //     bones[i].position = tempBoneVector[i];
+        // }
     }
 }
