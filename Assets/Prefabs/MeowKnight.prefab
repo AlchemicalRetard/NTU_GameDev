@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7365515316527503612}
   - component: {fileID: 6501450240760259464}
   - component: {fileID: 7458158525827043934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MeowKnight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
