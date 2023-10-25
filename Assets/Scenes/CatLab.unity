@@ -557,6 +557,7 @@ MonoBehaviour:
   maxSpeed: 6
   detectRange: 5
   attackZone: 1
+  attackInterval: 2
 --- !u!1 &253133392
 GameObject:
   m_ObjectHideFlags: 0

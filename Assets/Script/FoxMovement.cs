@@ -9,6 +9,7 @@ public class FoxMovement : MonoBehaviour
     public float maxSpeed;
     public float detectRange;
     public float attackZone;
+    public float attackInterval;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -16,6 +17,7 @@ public class FoxMovement : MonoBehaviour
     private float originalGravityScale;
     private bool isGrounded = false;
     private LayerMask mask;
+    private float lastAttackTime = 0;
 
     void Awake()
     {
@@ -53,8 +55,12 @@ public class FoxMovement : MonoBehaviour
                 {
                     transform.position = new Vector3(transform.position.x + (facingRight ? -1 : 1) * (attackZone - Mathf.Abs(distance)), transform.position.y, transform.position.z);
                 }
-                //attack
-                animator.Play("Fox_Attack");
+                //attack if cooldown is over
+                if(Time.time - lastAttackTime > attackInterval)
+                {
+                    lastAttackTime = Time.time;
+                    StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
+                }
             }
             else
             {
@@ -125,5 +131,15 @@ public class FoxMovement : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
+    }
+
+    IEnumerator AttackPlayer(Animator tempAnimator)
+    {
+        animator.Play("Fox_Attack");
+        //update ui and core system record
+        CoreSystem.PlayerAttacked();
+        //player takes damage animation, we wait for fox finish its animation
+        yield return new WaitForSeconds(0.5f);
+        tempAnimator.Play("Meow-Knight_Take_Damage");
     }
 }
