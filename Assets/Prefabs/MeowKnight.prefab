@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6846983485725432822}
   - component: {fileID: 1551025369375477899}
   - component: {fileID: 7365515316527503612}
-  - component: {fileID: 6501450240760259464}
   - component: {fileID: 7458158525827043934}
+  - component: {fileID: 5045133551323496265}
   m_Layer: 9
   m_Name: MeowKnight
   m_TagString: Player
@@ -48,7 +48,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.8125
+  m_Mass: 0.9695822
   m_LinearDrag: 0.05
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -136,8 +136,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &6501450240760259464
-BoxCollider2D:
+--- !u!114 &7458158525827043934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078404425350434135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87282cd4254d16a45892599ef093de44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  jumpHeight: 3
+  maxSpeed: 5
+--- !u!70 &5045133551323496265
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,31 +183,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 1}
-    newSize: {x: 0.8125, y: 0.9375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8125, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &7458158525827043934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3078404425350434135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87282cd4254d16a45892599ef093de44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  jumpHeight: 3
-  maxSpeed: 5
+  m_Offset: {x: 0, y: -0.0138014555}
+  m_Size: {x: 0.81249994, y: 1.0030667}
+  m_Direction: 0
