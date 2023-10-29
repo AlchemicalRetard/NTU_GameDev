@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CoreSystem : MonoBehaviour
 {
-    static private int playerHealth = 5;
+    public GameObject healthBar;
 
+    static private int playerHealth = 3;
+    static private HealthBarController healthBarController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthBarController = healthBar.GetComponent<HealthBarController>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class CoreSystem : MonoBehaviour
 
     static public void PlayerAttacked(){
         playerHealth--;
+        healthBarController.SetHeart(playerHealth);
         print("Player Health: " + playerHealth);
         if(playerHealth <= 0){
             print("Player is dead");

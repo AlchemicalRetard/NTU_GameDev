@@ -36,7 +36,8 @@ public class FoxMovement : MonoBehaviour
     void Update()
     {
         //Check if player is in sight
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), detectRange, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0), detectRange, mask);
+        //Debug.DrawRay(transform.position - new Vector3(0, 0.5f,0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
 
         //if player is in sight, move towards player
         float x = 0;
