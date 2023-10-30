@@ -143,4 +143,17 @@ public class FoxMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         tempAnimator.Play("Meow-Knight_Take_Damage");
     }
+
+    public void Attacked()
+    {
+        StartCoroutine("Destroy");
+    }
+
+    IEnumerator Destroy(){
+        animator.Play("Fox_Damage");
+        yield return new WaitForSeconds(0.5f);
+        animator.Play("Fox_Death");
+        yield return new WaitForSeconds(0.75f);
+        Destroy(gameObject);
+    }
 }

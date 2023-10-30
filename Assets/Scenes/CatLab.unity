@@ -1680,6 +1680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeowKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 5045133551323496265, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 6846983485725432822, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_Mass
       value: 0.9695822
@@ -6224,11 +6228,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 990268859634023821, guid: 461af37af12836d489ae346c57dd6549, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.67
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 990268859634023821, guid: 461af37af12836d489ae346c57dd6549, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.26
+      value: -2.52
       objectReference: {fileID: 0}
     - target: {fileID: 990268859634023821, guid: 461af37af12836d489ae346c57dd6549, type: 3}
       propertyPath: m_LocalPosition.z

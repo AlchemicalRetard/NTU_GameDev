@@ -14,6 +14,12 @@ public class MeowMovement : MonoBehaviour
     private float originalGravityScale;
     private bool isGrounded = false;
     private bool isAttacking = false;
+    private LayerMask mask;
+
+    void Awake()
+    {
+        mask = LayerMask.GetMask("Enemy");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -76,10 +82,6 @@ public class MeowMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            collision.gameObject.GetComponent<FoxMovement>().Attacked();
-        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -104,6 +106,10 @@ public class MeowMovement : MonoBehaviour
     IEnumerator InAttackMode()
     {
         isAttacking = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
+        if(hit.collider != null && hit.collider.tag == "Enemy"){
+            hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
+        }
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }
