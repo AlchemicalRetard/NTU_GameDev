@@ -13,6 +13,7 @@ public class MeowMovement : MonoBehaviour
     private bool facingRight = true;
     private float originalGravityScale;
     private bool isGrounded = false;
+    private bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,14 @@ public class MeowMovement : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             animator.Play("Meow-Knight_Jump");
         }
+
+        //attack
+        bool attack = Input.GetKeyDown(KeyCode.E);
+        if(attack && !isAttacking)
+        {
+            StartCoroutine(InAttackMode());
+            animator.Play("Meow-Knight_Attack2");
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -66,6 +75,10 @@ public class MeowMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("_groundLayer"))
         {
             isGrounded = true;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            collision.gameObject.GetComponent<FoxMovement>().Attacked();
         }
     }
 
@@ -86,5 +99,12 @@ public class MeowMovement : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
+    }
+
+    IEnumerator InAttackMode()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(0.3f);
+        isAttacking = false;
     }
 }
