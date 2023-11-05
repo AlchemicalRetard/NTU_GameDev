@@ -151,7 +151,7 @@ public class FoxMovement : MonoBehaviour
 
     IEnumerator Destroy(){
         animator.Play("Fox_Damage");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         animator.Play("Fox_Death");
         yield return new WaitForSeconds(0.75f);
         Destroy(gameObject);
