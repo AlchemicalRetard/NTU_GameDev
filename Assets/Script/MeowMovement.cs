@@ -13,6 +13,7 @@ public class MeowMovement : MonoBehaviour
     private bool facingRight = true;
     private float originalGravityScale;
     private bool isGrounded = false;
+    private bool isOnEnemy = false;
     private bool isAttacking = false;
     private LayerMask mask;
 
@@ -27,6 +28,7 @@ public class MeowMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         originalGravityScale = rb.gravityScale;
+        facingRight = transform.localScale.x > 0;
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class MeowMovement : MonoBehaviour
 
         //jump
         bool jump = Input.GetKeyDown(KeyCode.Space);
-        if(jump && Mathf.Abs(rb.velocity.y) < 0.001f && isGrounded)
+        if(jump && (Mathf.Abs(rb.velocity.y) < 0.001f || isOnEnemy) && isGrounded)
         {
             float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -82,6 +84,11 @@ public class MeowMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            isGrounded = true;
+            isOnEnemy = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -89,6 +96,11 @@ public class MeowMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("_groundLayer"))
         {
             isGrounded = false;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            isGrounded = false;
+            isOnEnemy = false;
         }
     }
 
