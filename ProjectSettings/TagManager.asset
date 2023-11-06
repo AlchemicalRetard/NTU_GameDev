@@ -44,3 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround1
+    uniqueID: 3243452797
+    locked: 0
+  - name: BackGround2
+    uniqueID: 1179622905
+    locked: 0
+  - name: Background3
+    uniqueID: 698449385
+    locked: 0
+  - name: Platforms
+    uniqueID: 1662708375
+    locked: 0
