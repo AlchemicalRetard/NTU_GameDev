@@ -42,7 +42,7 @@ public class FoodCounter : MonoBehaviour
     {
         if (foodCountText != null)
         {
-            foodCountText.text = "Food Collected: " + collectedFood + " / " + totalFood;
+            foodCountText.text = " x " + collectedFood;
         }
         else
         {

@@ -18,6 +18,7 @@ public class FoxMovement : MonoBehaviour
     private bool isGrounded = false;
     private LayerMask mask;
     private float lastAttackTime = 0;
+    private bool attacked = false;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class FoxMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         originalGravityScale = rb.gravityScale;
+        facingRight = transform.localScale.x > 0;
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class FoxMovement : MonoBehaviour
     {
         //Check if player is in sight
         RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0), detectRange, mask);
-        //Debug.DrawRay(transform.position - new Vector3(0, 0.5f,0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
+        Debug.DrawRay(transform.position - new Vector3(0, 0.5f,0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
 
         //if player is in sight, move towards player
         float x = 0;
@@ -57,7 +59,7 @@ public class FoxMovement : MonoBehaviour
                     transform.position = new Vector3(transform.position.x + (facingRight ? -1 : 1) * (attackZone - Mathf.Abs(distance)), transform.position.y, transform.position.z);
                 }
                 //attack if cooldown is over
-                if(Time.time - lastAttackTime > attackInterval)
+                if(Time.time - lastAttackTime > attackInterval && !attacked)
                 {
                     lastAttackTime = Time.time;
                     StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
@@ -146,12 +148,13 @@ public class FoxMovement : MonoBehaviour
 
     public void Attacked()
     {
+        attacked = true;
         StartCoroutine("Destroy");
     }
 
     IEnumerator Destroy(){
         animator.Play("Fox_Damage");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         animator.Play("Fox_Death");
         yield return new WaitForSeconds(0.75f);
         Destroy(gameObject);
