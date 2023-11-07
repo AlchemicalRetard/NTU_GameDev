@@ -15,8 +15,8 @@ public class CollectibleFosod : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            FoodCounter.Instance.AddFood(1);
-            CoreSystem.addTime(timeToAdd);
+          //  FoodCounter.Instance.AddFood(1);
+          //  CoreSystem.addTime(timeToAdd);
             Destroy(gameObject);  // Destroy the food item
         }
     }
