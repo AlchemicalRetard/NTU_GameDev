@@ -104,7 +104,7 @@ public class MeowMovement : MonoBehaviour
         }
     }
 
-    void Flip(float x)
+    /*void Flip(float x)
     {
         if (x > 0 && !facingRight || x < 0 && facingRight)
         {
@@ -112,6 +112,21 @@ public class MeowMovement : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
+        }
+    }*/
+    // New flip for cinemachine camera offset
+    void Flip(float x)
+    {
+        bool shouldFlip = (x > 0 && !facingRight) || (x < 0 && facingRight);
+        if (shouldFlip)
+        {
+            // Flip the character by rotating 180 degrees around the Y axis
+            Vector3 rotator = transform.eulerAngles;
+            rotator.y += 180f;
+            transform.eulerAngles = rotator;
+
+            // Toggle the state of facingRight
+            facingRight = !facingRight;
         }
     }
 
