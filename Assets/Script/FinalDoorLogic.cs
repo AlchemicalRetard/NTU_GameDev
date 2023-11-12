@@ -48,7 +48,7 @@ public class FinalDoorLogic : MonoBehaviour
         {
             Debug.Log("Player entered the door!");
             CoreSystem.setGameEndReason(CoreSystem.GameEndReason.TutorialClear);
-            SceneManager.LoadScene("GameEndScene", LoadSceneMode.Single);
+            CoreSystem.LoadLevel("GameEndScene");
         }
     }
 

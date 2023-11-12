@@ -69,7 +69,7 @@ public class GameTime2r : MonoBehaviour
     void PauseGame()
     {
         CoreSystem.setGameEndReason(CoreSystem.GameEndReason.TimeUp);
-        SceneManager.LoadScene("GameEndScene", LoadSceneMode.Single);
+        CoreSystem.LoadLevel("GameEndScene");
         // You can display a message to the player or bring up a menu here
         Debug.Log("Game Paused because the level was not cleared in time.");
     }

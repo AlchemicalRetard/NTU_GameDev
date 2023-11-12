@@ -14,17 +14,20 @@ public class CoreSystem : MonoBehaviour
 
     public GameObject healthBar;
     public GameObject timer;
+    public GameObject levelLoaderObject;
 
     static private int playerHealth = 3;
     static private HealthBarController healthBarController;
     static private GameTime2r gameTime2r;
     static private GameEndReason gameEndReason = GameEndReason.Undefined;
+    static private LevelLoader levelLoader;
 
     // Start is called before the first frame update
     void Start()
     {
         healthBarController = healthBar.GetComponent<HealthBarController>();
         gameTime2r = timer.GetComponent<GameTime2r>();
+        levelLoader = levelLoaderObject.GetComponent<LevelLoader>();
     }
 
     // Update is called once per frame
@@ -47,7 +50,7 @@ public class CoreSystem : MonoBehaviour
         if(playerHealth <= 0){
             print("Player is dead");
             gameEndReason = GameEndReason.PlayerDead;
-            SceneManager.LoadScene("GameEndScene", LoadSceneMode.Single);
+            LoadLevel("GameEndScene");
         }
     }
 
@@ -67,5 +70,9 @@ public class CoreSystem : MonoBehaviour
 
     static public int getPlayerHealth(){
         return playerHealth;
+    }
+
+    static public void LoadLevel(string levelName){
+        levelLoader.LoadLevel(levelName);
     }
 }
