@@ -25,9 +25,23 @@ public class CoreSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBarController = healthBar.GetComponent<HealthBarController>();
-        gameTime2r = timer.GetComponent<GameTime2r>();
-        levelLoader = levelLoaderObject.GetComponent<LevelLoader>();
+        try{
+            healthBarController = healthBar.GetComponent<HealthBarController>();
+        }catch{
+            print("Health bar not found");
+        }
+
+        try{
+            gameTime2r = timer.GetComponent<GameTime2r>();
+        }catch{
+            print("Timer not found");
+        }
+
+        try{
+            levelLoader = levelLoaderObject.GetComponent<LevelLoader>();
+        }catch{
+            print("Level loader not found");
+        }
     }
 
     // Update is called once per frame
