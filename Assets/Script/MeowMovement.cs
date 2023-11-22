@@ -17,6 +17,10 @@ public class MeowMovement : MonoBehaviour
     private bool isAttacking = false;
     private LayerMask mask;
 
+    private float damageCooldown = 1.0f; // 1 second cooldown
+    private float lastDamageTime;
+
+
     void Awake()
     {
         mask = LayerMask.GetMask("Enemy");
@@ -78,19 +82,6 @@ public class MeowMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("_groundLayer"))
-        {
-            isGrounded = true;
-        }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            isGrounded = true;
-            isOnEnemy = true;
-        }
-    }
-
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("_groundLayer"))
@@ -102,6 +93,38 @@ public class MeowMovement : MonoBehaviour
             isGrounded = false;
             isOnEnemy = false;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("_groundLayer"))
+        {
+            isGrounded = true;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            isGrounded = true;
+            isOnEnemy = true;
+
+            // Player has collided with enemy, isn't attacking, and cooldown has passed
+            if (!isAttacking && Time.time > lastDamageTime + damageCooldown)
+            {
+                lastDamageTime = Time.time; // Update the last damage time
+                CoreSystem.Instance.PlayerAttacked();
+                ApplyRecoil(collision.transform.position);
+               
+                
+            }
+        }
+    }
+
+    void ApplyRecoil(Vector3 enemyPosition)
+    {
+        Vector2 attackDirection = (transform.position - enemyPosition).normalized;
+        float recoilForce = 5.0f; // Adjust this force as necessary
+        rb.velocity = Vector2.zero; // Reset velocity before applying recoil to make it consistent
+        rb.AddForce(attackDirection * recoilForce, ForceMode2D.Impulse);
+       
     }
 
     /*void Flip(float x)
@@ -134,9 +157,13 @@ public class MeowMovement : MonoBehaviour
     {
         isAttacking = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
-        if(hit.collider != null && hit.collider.tag == "Enemy"){
-            hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
+        if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
+
+            hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
+           // hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
+           
         }
+
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }

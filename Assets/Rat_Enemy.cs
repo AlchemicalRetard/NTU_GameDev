@@ -2,38 +2,32 @@ using UnityEngine;
 
 public class Rat_Enemy : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 2f;
-    public GameObject pointA;
-    public GameObject pointB;
-    private Transform currentPoint;
-    private Rigidbody2D myRigidBody;
+    public float moveSpeed = 2f;
+    public Transform pointA;
+    public Transform pointB;
+    private Transform targetPoint;
 
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody2D>();
-        currentPoint = pointB.transform; // Start moving towards pointB
+        targetPoint = pointB; // Start moving towards pointB
     }
 
     void Update()
     {
-        MoveTowardsCurrentPoint();
-        CheckDistanceToCurrentPoint();
+        MoveTowardsTarget();
+        CheckDistanceAndSwitchTargets();
     }
 
-    private void MoveTowardsCurrentPoint()
+    void MoveTowardsTarget()
     {
-        // Determine the direction to move
-        float step = moveSpeed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, currentPoint.position, step);
+        transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, moveSpeed * Time.deltaTime);
     }
 
-    private void CheckDistanceToCurrentPoint()
+    void CheckDistanceAndSwitchTargets()
     {
-        // Check if the enemy is close enough to the target point to consider it "reached"
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.1f) // Using a smaller distance for accuracy
+        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f)
         {
-            // Switch to the other point
-            currentPoint = (currentPoint == pointA.transform) ? pointB.transform : pointA.transform;
+            targetPoint = targetPoint == pointA ? pointB : pointA;
         }
     }
 }
