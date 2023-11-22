@@ -7,7 +7,10 @@ public class MeowMovement : MonoBehaviour
     public float speed;
     public float jumpHeight;
     public float maxSpeed;
+    public AudioClip attackSound;
+    public AudioClip meowAttackSound;
 
+    private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
     private bool facingRight = true;
@@ -33,6 +36,7 @@ public class MeowMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         originalGravityScale = rb.gravityScale;
         facingRight = transform.localScale.x > 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -79,6 +83,11 @@ public class MeowMovement : MonoBehaviour
         {
             StartCoroutine(InAttackMode());
             animator.Play("Meow-Knight_Attack2");
+            audioSource.PlayOneShot(attackSound, 1f);
+            if(Random.Range(0, 5) == 0)
+            {
+                audioSource.PlayOneShot(meowAttackSound, 1f);
+            }
         }
     }
 

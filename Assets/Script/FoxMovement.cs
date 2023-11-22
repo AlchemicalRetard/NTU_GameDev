@@ -10,6 +10,7 @@ public class FoxMovement : MonoBehaviour
     public float detectRange;
     public float attackZone;
     public float attackInterval;
+    public AudioClip[] attackSound;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -19,6 +20,7 @@ public class FoxMovement : MonoBehaviour
     private LayerMask mask;
     private float lastAttackTime = 0;
     private bool attacked = false;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -32,6 +34,7 @@ public class FoxMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         originalGravityScale = rb.gravityScale;
         facingRight = transform.localScale.x > 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,7 @@ public class FoxMovement : MonoBehaviour
                 {
                     lastAttackTime = Time.time;
                     StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
+                    audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
                 }
             }
             else
