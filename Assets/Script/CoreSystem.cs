@@ -61,16 +61,51 @@ public class CoreSystem : MonoBehaviour
         gameTime2r.addTime(timeToAdd);
     }
 
-    static public void PlayerAttacked(){
-        if(playerIsHurtable()){
-            playerHealth--;
-        }
+    // static public void PlayerAttacked(){
+    //     if(playerIsHurtable()){
+    //         playerHealth--;
+    //     }
+    //     healthBarController.SetHeart(playerHealth);
+    //     print("Player Health: " + playerHealth);
+    //     if(playerHealth <= 0){
+    //         print("Player is dead");
+    //         gameEndReason = GameEndReason.PlayerDead;
+    //         LoadLevel("GameEndScene");
+    //     }
+    // }
+
+    public void PlayerAttacked()
+    {
+        playerHealth--;
         healthBarController.SetHeart(playerHealth);
-        print("Player Health: " + playerHealth);
-        if(playerHealth <= 0){
-            print("Player is dead");
+        Debug.Log("Player Health: " + playerHealth);
+
+        if (playerHealth <= 0)
+        {
+            Debug.Log("Player is dead");
             gameEndReason = GameEndReason.PlayerDead;
             LoadLevel("GameEndScene");
+        }
+        else
+        {
+            // Trigger the hurt animation
+            if (playerAnimator)
+            {
+                playerAnimator.SetTrigger("IsHurt"); // Assuming "IsHurt" is a trigger
+                StartCoroutine(ResetHurtStateAfterDelay(1f)); // 2 seconds for the hurt animation to play
+            }
+        }
+    }
+
+    private IEnumerator ResetHurtStateAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the duration of the hurt animation
+
+        // Now reset the hurt state
+        if (playerAnimator)
+        {
+            // Assuming "IsHurt" is a boolean. If it's a trigger, you don't need to reset it.
+            playerAnimator.SetBool("IsHurt", false);
         }
     }
 
