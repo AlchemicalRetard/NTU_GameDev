@@ -1,22 +1,27 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoreSystem : MonoBehaviour
 {
+    public enum GameEndReason{
+        Undefined = -1,
+        PlayerDead = 0,
+        TimeUp = 1,
+        TutorialClear = 2
+    }
+
     public GameObject healthBar;
-   // public GameObject timer;
-    public Rigidbody2D playerRigidbody; // Assign this in the inspector
+    public GameObject timer;
+    public GameObject levelLoaderObject;
 
-    static private int playerHealth = 7;
+    static private int playerHealth = 3;
     static private HealthBarController healthBarController;
-   // static private GameTimer gameTime2r;
-    static private CoreSystem instance; // For non-static reference to this script
-
-    // Recoil and slow motion settings
-    public float recoilForce = 2f;
-    public float slowMotionScale = 0.5f;
-    public float slowMotionDuration = 2f;
+    static private GameTime2r gameTime2r;
+    static private GameEndReason gameEndReason = GameEndReason.Undefined;
+    static private LevelLoader levelLoader;
+    static public CoreSystem instance; // For non-static reference to this script
 
     void Awake()
     {
@@ -26,190 +31,68 @@ public class CoreSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthBarController = healthBar.GetComponent<HealthBarController>();
-       // gameTime2r = timer.GetComponent<GameTimer>();
+        try{
+            healthBarController = healthBar.GetComponent<HealthBarController>();
+        }catch{
+            print("Health bar not found");
+        }
+
+        try{
+            gameTime2r = timer.GetComponent<GameTime2r>();
+        }catch{
+            print("Timer not found");
+        }
+
+        try{
+            levelLoader = levelLoaderObject.GetComponent<LevelLoader>();
+        }catch{
+            print("Level loader not found");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    *//*static public void AddTime(int timeToAdd)
+    static public void addTime(int timeToAdd)
     {
-        gameTime2r.AddTime(timeToAdd);
-    }*//*
+        gameTime2r.addTime(timeToAdd);
+    }
 
-    static public CoreSystem Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                // Optionally, find the CoreSystem in the scene if it's not already set.
-                instance = FindObjectOfType<CoreSystem>();
-            }
-            return instance;
+    static public void PlayerAttacked(){
+        if(playerIsHurtable()){
+            playerHealth--;
         }
-    }
-
-    public void PlayerAttacked(Vector2 attackDirection)
-    {
-        playerHealth--;
         healthBarController.SetHeart(playerHealth);
-        Debug.Log("Player Health: " + playerHealth);
-
-        if (playerHealth <= 0)
-        {
-            Debug.Log("Player is dead");
-            // Handle player death, e.g., trigger a game over sequence
-        }
-        else
-        {
-            // Apply recoil force in the direction opposite of the attack
-            StartCoroutine(RecoilAndSlowMotion(-attackDirection));
+        print("Player Health: " + playerHealth);
+        if(playerHealth <= 0){
+            print("Player is dead");
+            gameEndReason = GameEndReason.PlayerDead;
+            LoadLevel("GameEndScene");
         }
     }
 
-    private IEnumerator RecoilAndSlowMotion(Vector2 recoilDirection)
-    {
-        // Apply recoil force
-        playerRigidbody.AddForce(recoilDirection * recoilForce, ForceMode2D.Impulse);
+    static bool playerIsHurtable(){
+        //Final door logic might not be in the scene, 
+        //so we move this check in a seperate function lest the "PlayerAttacked" function looks strange
+        return !FinalDoorLogic.isCameraMoving();
+    }
 
-        // Slow down time
-        Time.timeScale = slowMotionScale;
-        // Ensure the duration is applied in scaled time by dividing by Time.timeScale
-        yield return new WaitForSecondsRealtime(slowMotionDuration * Time.timeScale);
+    static public void setGameEndReason(GameEndReason reason){
+        gameEndReason = reason;
+    }
 
-        // Restore normal time scale
-        Time.timeScale = 1f;
+    static public GameEndReason getGameEndReason(){
+        return gameEndReason;
+    }
+
+    static public int getPlayerHealth(){
+        return playerHealth;
+    }
+
+    static public void LoadLevel(string levelName){
+        levelLoader.LoadLevel(levelName);
     }
 }
-
-*//*
-
-
-using UnityEngine;
-
-public class CoreSystem : MonoBehaviour
-{
-    public GameObject healthBar;
-
-    private static int playerHealth = 7;
-    private static HealthBarController healthBarController;
-    private static CoreSystem instance; // For non-static reference to this script
-
-    void Awake()
-    {
-        instance = this; // Assign the static instance
-    }
-
-    void Start()
-    {
-        healthBarController = healthBar.GetComponent<HealthBarController>();
-    }
-
-    public static CoreSystem Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<CoreSystem>();
-            }
-            return instance;
-        }
-    }
-
-    public void PlayerAttacked()
-    {
-        playerHealth--;
-        healthBarController.SetHeart(playerHealth);
-        Debug.Log("Player Health: " + playerHealth);
-
-        if (playerHealth <= 0)
-        {
-            Debug.Log("Player is dead");
-            // Handle player death, e.g., trigger a game over sequence
-        }
-    }
-}
-
-
-*/
-using System.Collections;
-using UnityEngine;
-
-public class CoreSystem : MonoBehaviour
-{
-    public GameObject healthBar;
-    public Animator playerAnimator; // Reference to the Animator component on the player
-
-    private static int playerHealth = 7;
-    private static HealthBarController healthBarController;
-    private static CoreSystem instance; // For non-static reference to this script
-
-    void Awake()
-    {
-        instance = this; // Assign the static instance
-    }
-
-    void Start()
-    {
-        healthBarController = healthBar.GetComponent<HealthBarController>();
-        // Ensure that the playerAnimator reference is set,
-        // either via the inspector or by finding the component at runtime if not set.
-        if (!playerAnimator)
-        {
-            Debug.LogError("Player Animator reference not set in CoreSystem");
-        }
-    }
-
-    public static CoreSystem Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<CoreSystem>();
-            }
-            return instance;
-        }
-    }
-
-    public void PlayerAttacked()
-    {
-        playerHealth--;
-        healthBarController.SetHeart(playerHealth);
-        Debug.Log("Player Health: " + playerHealth);
-
-        if (playerHealth <= 0)
-        {
-            Debug.Log("Player is dead");
-            // Handle player death, e.g., trigger a game over sequence
-        }
-        else
-        {
-            // Trigger the hurt animation
-            if (playerAnimator)
-            {
-                playerAnimator.SetTrigger("IsHurt"); // Assuming "IsHurt" is a trigger
-                StartCoroutine(ResetHurtStateAfterDelay(1f)); // 2 seconds for the hurt animation to play
-            }
-        }
-    }
-
-    private IEnumerator ResetHurtStateAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay); // Wait for the duration of the hurt animation
-
-        // Now reset the hurt state
-        if (playerAnimator)
-        {
-            // Assuming "IsHurt" is a boolean. If it's a trigger, you don't need to reset it.
-            playerAnimator.SetBool("IsHurt", false);
-        }
-    }
-}
-

@@ -119,10 +119,8 @@ public class MeowMovement : MonoBehaviour
             if (!isAttacking && Time.time > lastDamageTime + damageCooldown)
             {
                 lastDamageTime = Time.time; // Update the last damage time
-                CoreSystem.Instance.PlayerAttacked();
-                ApplyRecoil(collision.transform.position);
-               
-                
+                CoreSystem.instance.PlayerAttacked();
+                ApplyRecoil(collision.transform.position);                
             }
         }
     }
