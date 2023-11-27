@@ -15,6 +15,7 @@ public class CoreSystem : MonoBehaviour
     public GameObject healthBar;
     public GameObject timer;
     public GameObject levelLoaderObject;
+    public Animator playerAnimator; // Reference to the Animator component on the player
 
     static private int playerHealth = 3;
     static private HealthBarController healthBarController;
