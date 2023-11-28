@@ -7,6 +7,7 @@ TagManager:
   - food
   - Food
   - Enemy
+  - jump
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Food
   - Enemy
   - Player
-  - 
+  - Jump
   - 
   - 
   - 
