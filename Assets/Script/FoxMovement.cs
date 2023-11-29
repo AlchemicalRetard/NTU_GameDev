@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -144,7 +144,7 @@ public class FoxMovement : MonoBehaviour
     {
         animator.Play("Fox_Attack");
         //update ui and core system record
-        CoreSystem.PlayerAttacked();
+        CoreSystem.instance.PlayerAttacked();
         //player takes damage animation, we wait for fox finish its animation
         yield return new WaitForSeconds(0.5f);
         tempAnimator.Play("Meow-Knight_Take_Damage");
@@ -164,4 +164,3 @@ public class FoxMovement : MonoBehaviour
         Destroy(gameObject);
     }
 }
-*/

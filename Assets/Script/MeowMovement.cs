@@ -166,8 +166,8 @@ public class MeowMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
         if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
 
-            hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
-           // hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
+            // hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
+           hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
            
         }
 
