@@ -1110,9 +1110,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MEOW KNIGHT:
+  m_text: 'MEOW KNIGHT
 
-    LA ADVENTURA'
+    ADVENTURE'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3573fcc0271d4364c93c73d3fca0c24c, type: 2}
   m_sharedMaterial: {fileID: -6119583997379445925, guid: 3573fcc0271d4364c93c73d3fca0c24c, type: 2}
