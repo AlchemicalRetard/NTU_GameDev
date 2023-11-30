@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameTime2r : MonoBehaviour
 {
@@ -68,8 +67,7 @@ public class GameTime2r : MonoBehaviour
 
     void PauseGame()
     {
-        CoreSystem.setGameEndReason(CoreSystem.GameEndReason.TimeUp);
-        CoreSystem.LoadLevel("GameEndScene");
+        Time.timeScale = 0;  // This will pause the game
         // You can display a message to the player or bring up a menu here
         Debug.Log("Game Paused because the level was not cleared in time.");
     }

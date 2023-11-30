@@ -42,11 +42,11 @@ public class FoxMovement : MonoBehaviour
     {
         //Check if player is in sight
         RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0), detectRange, mask);
-        Debug.DrawRay(transform.position - new Vector3(0, 0.5f,0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
+        Debug.DrawRay(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
 
         //if player is in sight, move towards player
         float x = 0;
-        if(hit.collider != null && hit.collider.tag == "Player")
+        if (hit.collider != null && hit.collider.tag == "Player")
         {
             float distance = hit.collider.transform.position.x - transform.position.x;
 
@@ -54,15 +54,16 @@ public class FoxMovement : MonoBehaviour
             Flip(distance);
 
             //Player is in sight, should we attack or just move towards player?
-            if(Mathf.Abs(distance) < attackZone){
+            if (Mathf.Abs(distance) < attackZone)
+            {
                 //if we are too close to player, first shift a little bit so we don't overlap too much, 
                 //which will seem like we're attacking nothing
-                if(Mathf.Abs(distance) < attackZone * 0.8f)
+                if (Mathf.Abs(distance) < attackZone * 0.8f)
                 {
                     transform.position = new Vector3(transform.position.x + (facingRight ? -1 : 1) * (attackZone - Mathf.Abs(distance)), transform.position.y, transform.position.z);
                 }
                 //attack if cooldown is over
-                if(Time.time - lastAttackTime > attackInterval && !attacked)
+                if (Time.time - lastAttackTime > attackInterval && !attacked)
                 {
                     lastAttackTime = Time.time;
                     StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
@@ -87,7 +88,7 @@ public class FoxMovement : MonoBehaviour
         }
 
         //make it not slippery whem not intending to move
-        if(Mathf.Abs(x) < 0.001f && isGrounded)
+        if (Mathf.Abs(x) < 0.001f && isGrounded)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
@@ -105,7 +106,7 @@ public class FoxMovement : MonoBehaviour
         //jump
         //bool jump = Input.GetKeyDown(KeyCode.Space);
         bool jump = false;
-        if(jump && Mathf.Abs(rb.velocity.y) < 0.001f && isGrounded)
+        if (jump && Mathf.Abs(rb.velocity.y) < 0.001f && isGrounded)
         {
             float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -156,7 +157,8 @@ public class FoxMovement : MonoBehaviour
         StartCoroutine("Destroy");
     }
 
-    IEnumerator Destroy(){
+    IEnumerator Destroy()
+    {
         animator.Play("Fox_Damage");
         yield return new WaitForSeconds(0.25f);
         animator.Play("Fox_Death");

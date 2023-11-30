@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CoreSystem : MonoBehaviour
 {
-    public enum GameEndReason{
+    public enum GameEndReason
+    {
         Undefined = -1,
         PlayerDead = 0,
         TimeUp = 1,
@@ -32,21 +33,30 @@ public class CoreSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        try{
+        try
+        {
             healthBarController = healthBar.GetComponent<HealthBarController>();
-        }catch{
+        }
+        catch
+        {
             print("Health bar not found");
         }
 
-        try{
+        try
+        {
             gameTime2r = timer.GetComponent<GameTime2r>();
-        }catch{
+        }
+        catch
+        {
             print("Timer not found");
         }
 
-        try{
+        try
+        {
             levelLoader = levelLoaderObject.GetComponent<LevelLoader>();
-        }catch{
+        }
+        catch
+        {
             print("Level loader not found");
         }
     }
@@ -54,7 +64,7 @@ public class CoreSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     static public void addTime(int timeToAdd)
@@ -110,25 +120,30 @@ public class CoreSystem : MonoBehaviour
         }
     }
 
-    static bool playerIsHurtable(){
+    static bool playerIsHurtable()
+    {
         //Final door logic might not be in the scene, 
         //so we move this check in a seperate function lest the "PlayerAttacked" function looks strange
         return !FinalDoorLogic.isCameraMoving();
     }
 
-    static public void setGameEndReason(GameEndReason reason){
+    static public void setGameEndReason(GameEndReason reason)
+    {
         gameEndReason = reason;
     }
 
-    static public GameEndReason getGameEndReason(){
+    static public GameEndReason getGameEndReason()
+    {
         return gameEndReason;
     }
 
-    static public int getPlayerHealth(){
+    static public int getPlayerHealth()
+    {
         return playerHealth;
     }
 
-    static public void LoadLevel(string levelName){
+    static public void LoadLevel(string levelName)
+    {
         levelLoader.LoadLevel(levelName);
     }
 }
