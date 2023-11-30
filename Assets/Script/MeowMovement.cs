@@ -110,7 +110,7 @@ public class MeowMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
             isGrounded = true;
             isOnEnemy = true;
@@ -120,7 +120,7 @@ public class MeowMovement : MonoBehaviour
             {
                 lastDamageTime = Time.time; // Update the last damage time
                 CoreSystem.instance.PlayerAttacked();
-                ApplyRecoil(collision.transform.position);                
+                ApplyRecoil(collision.transform.position);   
             }
         }
     }
