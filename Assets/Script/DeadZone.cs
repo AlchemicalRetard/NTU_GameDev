@@ -28,15 +28,22 @@ public class DeadZone : MonoBehaviour
             Vector2 defaultAttackDirection = Vector2.zero; // Replace with appropriate value if needed
 
             // Use the instance of CoreSystem to call the PlayerAttacked method
-          //  CoreSystem.Instance.PlayerAttacked(defaultAttackDirection);
+            //  CoreSystem.Instance.PlayerAttacked(defaultAttackDirection);
 
             // Move the player to the respawn point
-            other.transform.position = respawnPoint;
+            StartCoroutine(respawn());
         }
         else
         {
             // Destroy other objects that enter the DeadZone
             Destroy(other.gameObject);
+        }
+
+        IEnumerator respawn()
+        {
+            yield return new WaitForSeconds(0f); // created this to check if i can delay the respawn but this looks good :>
+            other.transform.position = respawnPoint;
+            
         }
     }
 

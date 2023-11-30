@@ -49,7 +49,7 @@ public class MeowMovement : MonoBehaviour
         }
 
         //make is not slippery whem not intending to move
-        if(Mathf.Abs(x) < 0.001f && isGrounded)
+        if (Mathf.Abs(x) < 0.001f && isGrounded)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
@@ -66,7 +66,7 @@ public class MeowMovement : MonoBehaviour
 
         //jump
         bool jump = Input.GetKeyDown(KeyCode.Space);
-        if(jump && (Mathf.Abs(rb.velocity.y) < 0.001f || isOnEnemy) && isGrounded)
+        if (jump && (Mathf.Abs(rb.velocity.y) < 0.001f || isOnEnemy) && isGrounded)
         {
             float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -75,7 +75,7 @@ public class MeowMovement : MonoBehaviour
 
         //attack
         bool attack = Input.GetKeyDown(KeyCode.E);
-        if(attack && !isAttacking)
+        if (attack && !isAttacking)
         {
             StartCoroutine(InAttackMode());
             animator.Play("Meow-Knight_Attack2");
@@ -112,8 +112,8 @@ public class MeowMovement : MonoBehaviour
                 lastDamageTime = Time.time; // Update the last damage time
                 CoreSystem.Instance.PlayerAttacked();
                 ApplyRecoil(collision.transform.position);
-               
-                
+
+
             }
         }
     }
@@ -124,7 +124,7 @@ public class MeowMovement : MonoBehaviour
         float recoilForce = 5.0f; // Adjust this force as necessary
         rb.velocity = Vector2.zero; // Reset velocity before applying recoil to make it consistent
         rb.AddForce(attackDirection * recoilForce, ForceMode2D.Impulse);
-       
+
     }
 
     /*void Flip(float x)
@@ -157,11 +157,12 @@ public class MeowMovement : MonoBehaviour
     {
         isAttacking = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
-        if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        {
 
             hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
-           // hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
-           
+            // hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
+
         }
 
         yield return new WaitForSeconds(0.3f);
