@@ -32,7 +32,7 @@ public class superJump : MonoBehaviour
         Debug.Log("touhed");
         yield return new WaitForSeconds(jumpDuration);  
 
-        jump.jumpHeight = 3.5f; // return jump height to normal
+        jump.jumpHeight = 3f; // return jump height to normal
 
     }
 
