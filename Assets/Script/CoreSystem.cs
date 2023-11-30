@@ -102,23 +102,24 @@ public class CoreSystem : MonoBehaviour
             // Trigger the hurt animation
             if (playerAnimator)
             {
-                playerAnimator.SetTrigger("IsHurt"); // Assuming "IsHurt" is a trigger
-                StartCoroutine(ResetHurtStateAfterDelay(1f)); // 2 seconds for the hurt animation to play
+                playerAnimator.Play("Meow-Knight_Take_Damage");
+                // playerAnimator.SetTrigger("IsHurt"); // Assuming "IsHurt" is a trigger
+                // StartCoroutine(ResetHurtStateAfterDelay(1f)); // 2 seconds for the hurt animation to play
             }
         }
     }
 
-    private IEnumerator ResetHurtStateAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay); // Wait for the duration of the hurt animation
+    // private IEnumerator ResetHurtStateAfterDelay(float delay)
+    // {
+    //     yield return new WaitForSeconds(delay); // Wait for the duration of the hurt animation
 
-        // Now reset the hurt state
-        if (playerAnimator)
-        {
-            // Assuming "IsHurt" is a boolean. If it's a trigger, you don't need to reset it.
-            playerAnimator.SetBool("IsHurt", false);
-        }
-    }
+    //     // Now reset the hurt state
+    //     if (playerAnimator)
+    //     {
+    //         // Assuming "IsHurt" is a boolean. If it's a trigger, you don't need to reset it.
+    //         playerAnimator.SetBool("IsHurt", false);
+    //     }
+    // }
 
     static bool playerIsHurtable()
     {

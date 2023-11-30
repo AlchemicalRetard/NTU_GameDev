@@ -895,6 +895,7 @@ MonoBehaviour:
   healthBar: {fileID: 430422370}
   timer: {fileID: 1430174757}
   levelLoaderObject: {fileID: 1195439859}
+  playerAnimator: {fileID: 2108552445}
 --- !u!4 &468807998
 Transform:
   m_ObjectHideFlags: 0
@@ -99053,6 +99054,11 @@ PolygonCollider2D:
 --- !u!4 &2108552442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8340371543084686613, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+  m_PrefabInstance: {fileID: 879120667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2108552445 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7365515316527503612, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
   m_PrefabInstance: {fileID: 879120667}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2119756963 stripped

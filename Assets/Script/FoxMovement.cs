@@ -147,8 +147,9 @@ public class FoxMovement : MonoBehaviour
         //update ui and core system record
         CoreSystem.instance.PlayerAttacked();
         //player takes damage animation, we wait for fox finish its animation
-        yield return new WaitForSeconds(0.5f);
-        tempAnimator.Play("Meow-Knight_Take_Damage");
+        // yield return new WaitForSeconds(0.5f);
+        // tempAnimator.Play("Meow-Knight_Take_Damage");
+        return null;
     }
 
     public void Attacked()
