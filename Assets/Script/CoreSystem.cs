@@ -13,6 +13,12 @@ public class CoreSystem : MonoBehaviour
         TutorialClear = 2
     }
 
+    public enum Language
+    {
+        English = 0,
+        Chinese = 1
+    }
+
     public GameObject healthBar;
     public GameObject timer;
     public GameObject levelLoaderObject;
@@ -23,6 +29,7 @@ public class CoreSystem : MonoBehaviour
     static private GameTime2r gameTime2r;
     static private GameEndReason gameEndReason = GameEndReason.Undefined;
     static private LevelLoader levelLoader;
+    static private Language language = Language.Chinese;
     static public CoreSystem instance; // For non-static reference to this script
 
     void Awake()
@@ -146,5 +153,15 @@ public class CoreSystem : MonoBehaviour
     static public void LoadLevel(string levelName)
     {
         levelLoader.LoadLevel(levelName);
+    }
+
+    static public void changeLanguage()
+    {
+        language = (Language)(((int)language + 1) % 2);
+    }
+
+    static public Language getLanguage()
+    {
+        return language;
     }
 }
