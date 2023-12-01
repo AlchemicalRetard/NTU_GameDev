@@ -8,6 +8,9 @@ public class GameEndSceneLogic : MonoBehaviour
     public GameObject title;
     public GameObject meowknight;
 
+    public TextMeshProUGUI titleScreenText;
+    public TextMeshProUGUI againText;
+
     private TextMeshProUGUI titleText;
     private Animator meowknightAnimator;
 
@@ -37,6 +40,14 @@ public class GameEndSceneLogic : MonoBehaviour
                 StartCoroutine("goodEnd");
                 break;
         }
+
+        if(CoreSystem.getLanguage() == CoreSystem.Language.Chinese){
+            titleScreenText.text = "返回主畫面";
+            againText.text = "再玩一次";
+        }else{
+            titleScreenText.text = "Return to Title";
+            againText.text = "Play Again";
+        }
     }
 
     // Update is called once per frame
@@ -55,5 +66,13 @@ public class GameEndSceneLogic : MonoBehaviour
     IEnumerator badEnd(){
         yield return new WaitForSeconds(1f);
         meowknightAnimator.SetTrigger("Death");
+    }
+
+    public void returnToTitle(){
+        CoreSystem.LoadLevel("TitleScreen");
+    }
+
+    public void playAgain(){
+        CoreSystem.LoadLevel(CoreSystem.getLastSelectedLevelName());
     }
 }

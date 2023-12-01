@@ -28,6 +28,7 @@ public class CoreSystem : MonoBehaviour
     static private HealthBarController healthBarController;
     static private GameTime2r gameTime2r;
     static private GameEndReason gameEndReason = GameEndReason.Undefined;
+    static private string lastSelectedLevelName = "";
     static private LevelLoader levelLoader;
     static private Language language = Language.Chinese;
     static public CoreSystem instance; // For non-static reference to this script
@@ -163,5 +164,16 @@ public class CoreSystem : MonoBehaviour
     static public Language getLanguage()
     {
         return language;
+    }
+
+    //This is only for title screen to remember the last selected level
+    static public void setLastSelectedLevelName(string levelName)
+    {
+        lastSelectedLevelName = levelName;
+    }
+
+    static public string getLastSelectedLevelName()
+    {
+        return lastSelectedLevelName;
     }
 }

@@ -1680,6 +1680,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.9695822
       objectReference: {fileID: 0}
+    - target: {fileID: 7458158525827043934, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 67f58f2ffc5cdef40b626ebc07e8c270, type: 3}
+    - target: {fileID: 7458158525827043934, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: meowAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a0b7f052c8422174f87c1c0e769677b0, type: 3}
     - target: {fileID: 8340371543084686613, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5
