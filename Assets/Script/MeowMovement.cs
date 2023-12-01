@@ -53,7 +53,7 @@ public class MeowMovement : MonoBehaviour
         }
 
         //make is not slippery whem not intending to move
-        if(Mathf.Abs(x) < 0.001f && isGrounded)
+        if(Mathf.Abs(x) < 0.75f && isGrounded)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
