@@ -7,6 +7,7 @@ TagManager:
   - food
   - Food
   - Enemy
+  - Necromancer
   layers:
   - Default
   - TransparentFX
