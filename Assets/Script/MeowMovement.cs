@@ -114,18 +114,18 @@ public class MeowMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        if (collision.collider.CompareTag("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             isGrounded = true;
             isOnEnemy = true;
 
             // Player has collided with enemy, isn't attacking, and cooldown has passed
-            if (!isAttacking && Time.time > lastDamageTime + damageCooldown)
-            {
-                lastDamageTime = Time.time; // Update the last damage time
-                CoreSystem.instance.PlayerAttacked();
-                ApplyRecoil(collision.transform.position);   
-            }
+            // if (!isAttacking && Time.time > lastDamageTime + damageCooldown)
+            // {
+            //     lastDamageTime = Time.time; // Update the last damage time
+            //     CoreSystem.instance.PlayerAttacked();
+            //     ApplyRecoil(collision.transform.position);   
+            // }
         }
     }
 
