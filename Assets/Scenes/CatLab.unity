@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c19a978af18b4b8826e345dac369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  food: []
+  foodItemsForNextStage: 0
 --- !u!4 &31593292
 Transform:
   m_ObjectHideFlags: 0
@@ -1900,7 +1902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6846983485725432822, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_Mass
-      value: 0.9695822
+      value: 1.0335612
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846983485725432822, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7458158525827043934, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: attackSound

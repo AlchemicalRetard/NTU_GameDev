@@ -73,10 +73,10 @@ public class MeowMovement : MonoBehaviour
         }
 
         //jump
-        bool jump = Input.GetKeyDown(KeyCode.Space);
+        bool jump = Input.GetKey(KeyCode.Space);
         if(jump && (Mathf.Abs(rb.velocity.y) < 0.001f || isOnEnemy) && isGrounded)
         {
-            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
+            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * originalGravityScale * 3));
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             animator.Play("Meow-Knight_Jump");
         }
