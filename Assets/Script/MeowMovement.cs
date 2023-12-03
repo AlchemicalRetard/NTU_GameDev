@@ -23,11 +23,6 @@ public class MeowMovement : MonoBehaviour
     private float damageCooldown = 1.0f; // 1 second cooldown
     private float lastDamageTime;
 
-
-
-
-   
-
     void Awake()
     {
         mask = LayerMask.GetMask("Enemy");
@@ -82,7 +77,7 @@ public class MeowMovement : MonoBehaviour
         }
 
         //attack
-        bool attack = Input.GetKeyDown(KeyCode.E);
+        bool attack = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.P);
         if(attack && !isAttacking)
         {
             StartCoroutine(InAttackMode());
@@ -93,6 +88,8 @@ public class MeowMovement : MonoBehaviour
                 audioSource.PlayOneShot(meowAttackSound, 1f);
             }
         }
+
+        Debug.DrawRay(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0) * 1.5f, Color.red);
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -168,7 +165,7 @@ public class MeowMovement : MonoBehaviour
     {
         isAttacking = true;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
-        if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
+        if (hit.collider != null && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Necromancer"))) {
 
           //  hit.collider.gameObject.GetComponent<Rat_Enemy>().TakeDamage(15);
             // hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);

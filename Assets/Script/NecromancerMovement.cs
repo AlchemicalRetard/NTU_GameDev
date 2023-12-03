@@ -11,10 +11,13 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
     public float attackZone;
     public float attackInterval;
     public AudioClip[] attackSound;
+    public AudioClip[] necromancerLaugh;
     private AudioSource audioSource;
     public GameObject flameSpawnPoint;
     public GameObject flame;
     public float launchVelocity;
+    public GameObject player;
+    public float turnAroundDistance; //player out of this distance will cause enemy to turn around
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,8 +25,8 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
     private LayerMask mask;
 
     private bool isGrounded = false;
-    private bool attacked = false;
     private bool facingRight = true;
+    private bool toDestroy = false;
 
     public int health = 3; // Enemy health
     private float lastAttackTime = 0;
@@ -43,22 +46,24 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
         originalGravityScale = rb.gravityScale;
         facingRight = transform.localScale.x > 0;
         audioSource = GetComponent<AudioSource>();
+
+        StartCoroutine("Laugh");
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage; // Reduce health
+        if(!toDestroy){
+            health -= damage; // Reduce health
 
-        if (health <= 0)
-        {
-            attacked = true;
-            Die(); // Call Die method when health is 0 or less
-        }
-        else
-        {
-            // Optionally, play a damage animation or sound
-            attacked = true; // Keep or modify this line based on your logic
-            animator.Play("Necromancer_GetHit");
+            if (health <= 0)
+            {
+                Die(); // Call Die method when health is 0 or less
+            }
+            else
+            {
+                // Optionally, play a damage animation or sound
+                animator.Play("Necromancer_GetHit");
+            }
         }
     }
 
@@ -72,6 +77,13 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        //Check if player is out of turnAroundDistance
+        float distanceToPlayer = player.transform.position.x - transform.position.x;
+        if (Mathf.Abs(distanceToPlayer) > turnAroundDistance)
+        {
+            Flip(distanceToPlayer);
+        }
+
         //Check if player is in sight
         RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0), detectRange, mask);
         Debug.DrawRay(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0) * detectRange, Color.green);
@@ -88,24 +100,28 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
             //Player is in sight, should we attack or just move towards player?
             if (Mathf.Abs(distance) < attackZone)
             {
-                //if we are too close to player, first shift a little bit so we don't overlap too much, 
-                //which will seem like we're attacking nothing
-                // if (Mathf.Abs(distance) < attackZone * 0.8f)
-                // {
-                //     transform.position = new Vector3(transform.position.x + (facingRight ? -1 : 1) * (attackZone - Mathf.Abs(distance)), transform.position.y, transform.position.z);
-                // }
                 //attack if cooldown is over
-                if (Time.time - lastAttackTime > attackInterval && !attacked)
+                if (Time.time - lastAttackTime > attackInterval && !toDestroy)
                 {
                     lastAttackTime = Time.time;
-                    StartCoroutine("AttackPlayer", hit.collider.gameObject.transform.position);
-                    //audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
+                    StartCoroutine("AttackPlayer", player.transform.position);
+                    audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
                 }
             }
             else
             {
                 //move towards player
                 x = distance > 0 ? 1 : -1;
+            }
+        }else{
+            //if player is not in sight, do animation randomly and attack player
+            bool doAnimation = Random.Range(0, 1000) == 42;
+            if (doAnimation)
+            {
+                animator.Play("Necromancer_Spawn");
+                lastAttackTime = Time.time;
+                StartCoroutine("AttackPlayer", player.transform.position);
+                audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
             }
         }
 
@@ -136,12 +152,19 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
         }
 
         //jump
-        bool jump = false;
-        if (jump && Mathf.Abs(rb.velocity.y) < 0.001f && isGrounded)
+        bool jump = Random.Range(0, 42) == 3; // jump randomly
+        if (jump && Mathf.Abs(rb.velocity.y) < 0.001f && isGrounded && x != 0) //only jump when moving, or it will look stupid
         {
-            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.gravityScale));
+            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * originalGravityScale * 3));
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            animator.Play("Fox_Jump");
+            animator.Play("Necromancer_Jump");
+
+            //also, attack player when jumping
+            if(Random.Range(0, 8) == 2){
+                lastAttackTime = Time.time;
+                StartCoroutine("AttackPlayer", player.transform.position);
+                audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
+            }
         }
     }
 
@@ -185,10 +208,19 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
 
     IEnumerator Destroy()
     {
+        toDestroy = true;
         animator.Play("Necromancer_GetHit");
-        yield return new WaitForSeconds(0.25f);
-        animator.Play("Necromancer_Death");
         yield return new WaitForSeconds(0.75f);
+        animator.Play("Necromancer_Death");
+        yield return new WaitForSeconds(4.333f);
         Destroy(gameObject);
+    }
+
+    IEnumerator Laugh(){
+        while(true){
+            yield return new WaitForSeconds(Random.Range(3, 6));
+            audioSource.PlayOneShot(necromancerLaugh[Random.Range(0, necromancerLaugh.Length)], 0.3f);
+        
+        }
     }
 }
