@@ -23,6 +23,7 @@ public class FinalDoorLogic : MonoBehaviour
     void Update()
     {
         if(!allFoodCollected && foodCounterScript.AllFoodCollected())
+        //if(!allFoodCollected && foodCounterScript.getFoodCount() >= 1) //For testing
         {
             allFoodCollected = true;
             Debug.Log("All food collected!");

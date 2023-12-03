@@ -7,12 +7,16 @@ public class GameEndSceneLogic : MonoBehaviour
 {
     public GameObject title;
     public GameObject meowknight;
+    public GameObject titleScreenButton;
+    public GameObject nextLevelButton;
 
     public TextMeshProUGUI titleScreenText;
     public TextMeshProUGUI againText;
+    public TextMeshProUGUI nextLevelText;
 
     private TextMeshProUGUI titleText;
     private Animator meowknightAnimator;
+
 
     private string[] randomAttack = {"Attack1", "Attack2", "Attack4"};
 
@@ -20,6 +24,12 @@ public class GameEndSceneLogic : MonoBehaviour
     void Start()
     {
         meowknightAnimator = meowknight.GetComponent<Animator>();
+
+        print(CoreSystem.getGameEndReason());
+        print(CoreSystem.getLanguage());
+
+        titleScreenButton.SetActive(CoreSystem.getGameEndReason() != CoreSystem.GameEndReason.TutorialClear);
+        nextLevelButton.SetActive(CoreSystem.getGameEndReason() == CoreSystem.GameEndReason.TutorialClear);
 
         titleText = title.GetComponent<TextMeshProUGUI>();
         switch(CoreSystem.getGameEndReason()){
@@ -43,9 +53,11 @@ public class GameEndSceneLogic : MonoBehaviour
 
         if(CoreSystem.getLanguage() == CoreSystem.Language.Chinese){
             titleScreenText.text = "返回主畫面";
+            nextLevelText.text = "開始冒險！";
             againText.text = "再玩一次";
         }else{
             titleScreenText.text = "Return to Title";
+            nextLevelText.text = "Next Level!";
             againText.text = "Play Again";
         }
     }
@@ -74,5 +86,9 @@ public class GameEndSceneLogic : MonoBehaviour
 
     public void playAgain(){
         CoreSystem.LoadLevel(CoreSystem.getLastSelectedLevelName());
+    }
+
+    public void nextLevel(){
+        CoreSystem.LoadLevel("BackGround2");
     }
 }

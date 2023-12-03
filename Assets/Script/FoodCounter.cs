@@ -58,4 +58,8 @@ public class FoodCounter : MonoBehaviour
             Debug.LogError("TextMeshProUGUI component is not assigned in FoodCounter.");
         }
     }
+
+    public int getFoodCount(){
+        return collectedFood;
+    }
 }
