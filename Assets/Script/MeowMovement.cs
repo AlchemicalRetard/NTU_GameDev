@@ -24,6 +24,10 @@ public class MeowMovement : MonoBehaviour
     private float lastDamageTime;
 
 
+
+
+   
+
     void Awake()
     {
         mask = LayerMask.GetMask("Enemy");
@@ -166,12 +170,17 @@ public class MeowMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
         if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
 
+          //  hit.collider.gameObject.GetComponent<Rat_Enemy>().TakeDamage(15);
             // hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
-           hit.collider.gameObject.GetComponent<FoxMovement>().Attacked();
-           
+            //hit.collider.gameObject.GetComponent<FoxMovement>().Attacked(); // This line is causing issue in my scene that is background21 
+            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(15);
+            }
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         isAttacking = false;
     }
 }

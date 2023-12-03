@@ -29,7 +29,7 @@ public class CoreSystem : MonoBehaviour
     {
         instance = this; // Assign the static instance
     }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +65,18 @@ public class CoreSystem : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public static CoreSystem Instance // Property for instance access
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<CoreSystem>();
+            }
+            return instance;
+        }
     }
 
     static public void addTime(int timeToAdd)

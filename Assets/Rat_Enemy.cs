@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public class Rat_Enemy : MonoBehaviour
+public class Rat_Enemy : MonoBehaviour, IDamageable
 {
+    public int health = 3; // Enemy health
     public float moveSpeed = 2f;
+
     public Transform pointA;
     public Transform pointB;
+
     private Transform targetPoint;
     private Vector3 lastPosition;
 
+    
     void Start()
     {
         targetPoint = pointB; // Start moving towards pointB
@@ -20,6 +24,23 @@ public class Rat_Enemy : MonoBehaviour
         CheckDistanceAndSwitchTargets();
         FlipSpriteBasedOnDirection();
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage; // Reduce health
+
+        if (health <= 0)
+        {
+            Die(); // Call Die method when health is 0 or less
+        }
+        else
+        {
+            // Optionally, play a damage animation or sound
+        }
+    }
+
+
+
 
     void MoveTowardsTarget()
     {
@@ -46,4 +67,11 @@ public class Rat_Enemy : MonoBehaviour
         }
         lastPosition = transform.position; // Update the last position for the next frame
     }
+
+    private void Die()
+    {
+        // Play death animation or sound
+        Destroy(gameObject); // Destroy the enemy object
+    }
+
 }

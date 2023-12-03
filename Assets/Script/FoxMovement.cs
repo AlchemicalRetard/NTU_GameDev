@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoxMovement : MonoBehaviour
+public class FoxMovement : MonoBehaviour, IDamageable
 {
     public float speed;
     public float jumpHeight;
@@ -11,16 +11,21 @@ public class FoxMovement : MonoBehaviour
     public float attackZone;
     public float attackInterval;
     public AudioClip[] attackSound;
+    private AudioSource audioSource;
 
     private Rigidbody2D rb;
     private Animator animator;
-    private bool facingRight = true;
     private float originalGravityScale;
-    private bool isGrounded = false;
     private LayerMask mask;
-    private float lastAttackTime = 0;
+
+    private bool isGrounded = false;
     private bool attacked = false;
-    private AudioSource audioSource;
+    private bool facingRight = true;
+
+    public int health = 3; // Enemy health
+    private float lastAttackTime = 0;
+   
+    
 
     void Awake()
     {
@@ -36,6 +41,29 @@ public class FoxMovement : MonoBehaviour
         facingRight = transform.localScale.x > 0;
         audioSource = GetComponent<AudioSource>();
     }
+    public void TakeDamage(int damage)
+    {
+        health -= damage; // Reduce health
+
+        if (health <= 0)
+        {
+            attacked = true;
+            Die(); // Call Die method when health is 0 or less
+        }
+        else
+        {
+            // Optionally, play a damage animation or sound
+            attacked = true; // Keep or modify this line based on your logic
+            StartCoroutine("Destroy"); // Existing logic
+        }
+    }
+
+    private void Die()
+    {
+        // Play death animation or sound
+        StartCoroutine("Destroy"); // Destroy the enemy object
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -66,7 +94,7 @@ public class FoxMovement : MonoBehaviour
                 if (Time.time - lastAttackTime > attackInterval && !attacked)
                 {
                     lastAttackTime = Time.time;
-                    StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
+                   StartCoroutine("AttackPlayer", hit.collider.gameObject.GetComponent<Animator>());
                     audioSource.PlayOneShot(attackSound[Random.Range(0, attackSound.Length)], 1f);
                 }
             }
@@ -143,6 +171,8 @@ public class FoxMovement : MonoBehaviour
 
     IEnumerator AttackPlayer(Animator tempAnimator)
     {
+        
+       // yield return new WaitForSeconds(.f);
         animator.Play("Fox_Attack");
         //update ui and core system record
         CoreSystem.instance.PlayerAttacked();
@@ -152,11 +182,11 @@ public class FoxMovement : MonoBehaviour
         return null;
     }
 
-    public void Attacked()
+/*    public void Attacked()
     {
         attacked = true;
         StartCoroutine("Destroy");
-    }
+    }*/
 
     IEnumerator Destroy()
     {

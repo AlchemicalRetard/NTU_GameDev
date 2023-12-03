@@ -152,9 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c19a978af18b4b8826e345dac369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food:
-  - {fileID: 0}
-  foodItemsForNextStage: 10
 --- !u!4 &31593292
 Transform:
   m_ObjectHideFlags: 0
@@ -1671,6 +1668,14 @@ PrefabInstance:
     - target: {fileID: 3078404425350434135, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_Name
       value: MeowKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045133551323496265, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8819838
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045133551323496265, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.034741957
       objectReference: {fileID: 0}
     - target: {fileID: 5045133551323496265, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
