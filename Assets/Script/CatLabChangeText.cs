@@ -18,5 +18,7 @@ public class CatLabChangeText : MonoBehaviour
             foxText.text = "※No fox will be hurt during this tutorial.";
             foodText.text = "FOOD = TIME!!!";
         }
+
+        CoreSystem.setLastSelectedLevelName("CatLab");
     }
 }
