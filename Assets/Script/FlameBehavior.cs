@@ -13,7 +13,7 @@ public class FlameBehavior : MonoBehaviour
     }
 
     void OnTriggerEnter2D (Collider2D other){
-        if(other.gameObject.tag != "Necromancer"){
+        if(other.gameObject.tag == "Player" || other.gameObject.layer == LayerMask.NameToLayer("_groundLayer")){
             animator.SetTrigger("Explode");
             if(other.gameObject.tag == "Player"){
                 CoreSystem.instance.PlayerAttacked();

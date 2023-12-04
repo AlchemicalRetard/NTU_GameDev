@@ -29,7 +29,7 @@ public class FoodCounter : MonoBehaviour
 
         // Count the total number of food items in the scene
         totalFood = GameObject.FindGameObjectsWithTag("Food").Length;  // Assuming the food items are tagged as "Food"
-        foodCountText.text = " x " + collectedFood + "/" + totalFood;
+        foodCountText.text = " x " + collectedFood + " / " + totalFood;
     }
 
     void Start()
@@ -55,7 +55,7 @@ public class FoodCounter : MonoBehaviour
     {
         if (foodCountText != null)
         {
-            foodCountText.text = " x " + collectedFood + "/" + totalFood ;
+            foodCountText.text = " x " + collectedFood + " / " + totalFood ;
         }
         else
         {
