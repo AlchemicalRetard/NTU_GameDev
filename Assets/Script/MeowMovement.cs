@@ -68,7 +68,7 @@ public class MeowMovement : MonoBehaviour
         }
 
         //jump
-        bool jump = Input.GetKey(KeyCode.Space);
+        bool jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
         if(jump && (Mathf.Abs(rb.velocity.y) < 0.001f || isOnEnemy) && isGrounded)
         {
             float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * originalGravityScale * 3));
