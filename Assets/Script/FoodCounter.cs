@@ -7,25 +7,29 @@ public class FoodCounter : MonoBehaviour
     public TextMeshProUGUI foodCountText;
     public AudioClip collectSound;
 
+
     private int totalFood = 0;
     private int collectedFood = 0;  // Track the number of collected food items
     private AudioSource audioSource;
 
     private void Awake()
     {
+
+
         if (Instance == null)
         {
             Instance = this;
         }
-        else if (Instance != this)
+       /* else if (Instance != this)
         {
             Destroy(gameObject);
-        }
+        }*/
 
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
 
         // Count the total number of food items in the scene
         totalFood = GameObject.FindGameObjectsWithTag("Food").Length;  // Assuming the food items are tagged as "Food"
+        foodCountText.text = " x " + collectedFood + "/" + totalFood;
     }
 
     void Start()
@@ -51,7 +55,7 @@ public class FoodCounter : MonoBehaviour
     {
         if (foodCountText != null)
         {
-            foodCountText.text = " x " + collectedFood;
+            foodCountText.text = " x " + collectedFood + "/" + totalFood ;
         }
         else
         {

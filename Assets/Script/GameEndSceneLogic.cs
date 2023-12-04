@@ -89,6 +89,6 @@ public class GameEndSceneLogic : MonoBehaviour
     }
 
     public void nextLevel(){
-        CoreSystem.LoadLevel("BackGround2");
+        CoreSystem.LoadLevel("BackGround21");
     }
 }

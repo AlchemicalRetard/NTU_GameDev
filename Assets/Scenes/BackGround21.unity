@@ -3165,7 +3165,7 @@ GameObject:
   - component: {fileID: 248070819}
   m_Layer: 0
   m_Name: food
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7709,7 +7709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &731137379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8182,7 +8182,7 @@ GameObject:
   - component: {fileID: 827271002}
   m_Layer: 0
   m_Name: food (2)
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9009,7 +9009,7 @@ GameObject:
   - component: {fileID: 958901689}
   m_Layer: 0
   m_Name: food (3)
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10614,11 +10614,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941831792038555250, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 204.97244
+      value: 24.1
       objectReference: {fileID: 0}
     - target: {fileID: 941831792038555250, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -75.92942
+      value: -71
       objectReference: {fileID: 0}
     - target: {fileID: 941831792038555250, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10652,6 +10652,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 976815030560674715, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
+      propertyPath: m_Mass
+      value: 3.8162255
+      objectReference: {fileID: 0}
     - target: {fileID: 2376929223578859172, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -10666,7 +10670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475589603361149042, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11985,7 +11989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12178,7 +12182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18119,7 +18123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2136055182
 Transform:
   m_ObjectHideFlags: 0

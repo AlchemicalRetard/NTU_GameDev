@@ -99971,6 +99971,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4668594095064536937, guid: 360162a2e5520c944bc9b0cf9133bba5, type: 3}
+      propertyPath: m_text
+      value: x0
+      objectReference: {fileID: 0}
     - target: {fileID: 7281677854301014319, guid: 360162a2e5520c944bc9b0cf9133bba5, type: 3}
       propertyPath: m_Name
       value: FoodCountText
