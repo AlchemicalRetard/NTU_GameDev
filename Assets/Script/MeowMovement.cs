@@ -60,7 +60,7 @@ public class MeowMovement : MonoBehaviour
         //make falling faster
         if (rb.velocity.y < 0)
         {
-            rb.gravityScale = originalGravityScale * 6;
+            rb.gravityScale = originalGravityScale * 3;
         }
         else
         {

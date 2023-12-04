@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c19a978af18b4b8826e345dac369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: []
-  foodItemsForNextStage: 0
 --- !u!4 &31593292
 Transform:
   m_ObjectHideFlags: 0
@@ -461,6 +459,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1444150700}
     m_Modifications:
+    - target: {fileID: 2204141315975808188, guid: 379644ec5ac2aa5458be119f50e648a6, type: 3}
+      propertyPath: maxVelocity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204141315975808188, guid: 379644ec5ac2aa5458be119f50e648a6, type: 3}
+      propertyPath: useAcceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204141315975808188, guid: 379644ec5ac2aa5458be119f50e648a6, type: 3}
+      propertyPath: calculateVelocityWithMoveTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464677919510211132, guid: 379644ec5ac2aa5458be119f50e648a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5034805732487280388, guid: 379644ec5ac2aa5458be119f50e648a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.5549164

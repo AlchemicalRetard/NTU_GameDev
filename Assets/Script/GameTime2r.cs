@@ -8,17 +8,17 @@ public class GameTime2r : MonoBehaviour
     private float timeRemaining;
     public TextMeshProUGUI timerText;
     public bool timerIsRunning = false;
+    public bool pauseTimerForDialogue = false;  // New variable to control timer during dialogues
 
     private void Start()
     {
-        // Start the timer automatically when the game starts
         timeRemaining = timeLimit;
         timerIsRunning = true;
     }
 
     private void Update()
     {
-        if (timerIsRunning)
+        if (timerIsRunning && !pauseTimerForDialogue)  // Check if timer should be paused for dialogues
         {
             if (timeRemaining > 0)
             {
@@ -32,6 +32,10 @@ public class GameTime2r : MonoBehaviour
                 EndGame();
             }
         }
+    }
+    public void SetPauseTimerForDialogue(bool pause)
+    {
+        pauseTimerForDialogue = pause;
     }
 
     public void addTime(int timeToAdd)
