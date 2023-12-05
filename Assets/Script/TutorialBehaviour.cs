@@ -6,7 +6,7 @@ public class TutorialBehaviour : MonoBehaviour
 {
     public float fadeTime = 0.2f;
 
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     private bool state = false;
 
     // Start is called before the first frame update

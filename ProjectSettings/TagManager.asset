@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Necromancer
   - Platform
+  - OuterEnemy
   layers:
   - Default
   - TransparentFX

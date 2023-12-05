@@ -36,11 +36,13 @@ public class CoreSystem : MonoBehaviour
     void Awake()
     {
         instance = this; // Assign the static instance
+        playerHealth = 3;
     }
     
     // Start is called before the first frame update
     void Start()
     {
+        playerHealth = 3;
         try
         {
             healthBarController = healthBar.GetComponent<HealthBarController>();

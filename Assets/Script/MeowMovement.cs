@@ -17,7 +17,7 @@ public class MeowMovement : MonoBehaviour
     private float originalGravityScale;
     private bool isGrounded = false;
     private bool isOnEnemy = false;
-    private bool isAttacking = false;
+    [HideInInspector] public bool isAttacking = false;
     private LayerMask mask;
 
     private float damageCooldown = 1.0f; // 1 second cooldown
@@ -114,7 +114,7 @@ public class MeowMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             isGrounded = true;
-            isOnEnemy = true;
+            isOnEnemy = false;
 
             // Player has collided with enemy, isn't attacking, and cooldown has passed
             // if (!isAttacking && Time.time > lastDamageTime + damageCooldown)
