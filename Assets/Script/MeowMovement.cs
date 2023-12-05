@@ -28,7 +28,7 @@ public class MeowMovement : MonoBehaviour
 
     public float dashSpeed = 10f;
     private float lastDashTime;
-    private float dashCooldown = 2.0f;
+    private float dashCooldown = 1.0f;
     
 
 
@@ -52,7 +52,7 @@ public class MeowMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.O))
         {
             if (Time.time >= lastDashTime + dashCooldown)
             {
@@ -60,8 +60,6 @@ public class MeowMovement : MonoBehaviour
                 lastDashTime = Time.time;
             }
         }
-
-
 
         float x = Input.GetAxis("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(x));
@@ -201,12 +199,8 @@ public class MeowMovement : MonoBehaviour
     IEnumerator InAttackMode()
     {
         isAttacking = true;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 0.5f, 0), new Vector3(facingRight ? 1 : -1, 0, 0), 1.5f, mask);
         if (hit.collider != null && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Necromancer"))) {
-
-          //  hit.collider.gameObject.GetComponent<Rat_Enemy>().TakeDamage(15);
-            // hit.collider.gameObject.GetComponent<SmallEnemy>().TakeDamage(15f);
-            //hit.collider.gameObject.GetComponent<FoxMovement>().Attacked(); // This line is causing issue in my scene that is background21 
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {

@@ -32,7 +32,7 @@ public class FallingPrefabSpawner : MonoBehaviour
             GameObject fallingObject = Instantiate(prefabToFall, spawnPosition, Quaternion.identity);
 
             // Add a Rigidbody component to the instantiated prefab to make it fall
-            Rigidbody rb = fallingObject.AddComponent<Rigidbody>();
+            // Rigidbody2D rb = fallingObject.AddComponent<Rigidbody2D>();
 
             // Optionally, adjust Rigidbody properties here (e.g., mass, drag)
             // rb.mass = 1; 

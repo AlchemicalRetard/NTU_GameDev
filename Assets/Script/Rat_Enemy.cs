@@ -17,6 +17,7 @@ public class Rat_Enemy : MonoBehaviour, IDamageable
     private Vector3 lastPosition;
     private float lastAttackTime; // Time when the last attack happened
     private LayerMask mask;
+    private bool toDestroy = false;
 
     void Awake()
     {
@@ -33,16 +34,18 @@ public class Rat_Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        MoveTowardsTarget();
-        CheckDistanceAndSwitchTargets();
-        FlipSpriteBasedOnDirection();
-        PerformAttackRaycast();
+        if(!toDestroy){
+            MoveTowardsTarget();
+            CheckDistanceAndSwitchTargets();
+            FlipSpriteBasedOnDirection();
+            PerformAttackRaycast();
+        }
     }
 
     private void PerformAttackRaycast()
     {
         Vector2 rayDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, attackZone, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.2f, 0), rayDirection, attackZone, mask);
         Debug.DrawRay(transform.position, rayDirection * attackZone, Color.red);
 
         if (hit.collider != null && hit.collider.CompareTag("Player"))
@@ -56,8 +59,8 @@ public class Rat_Enemy : MonoBehaviour, IDamageable
         if (Time.time - lastAttackTime > attackInterval)
         {
             lastAttackTime = Time.time;
-            CoreSystem.instance.PlayerAttacked();
             ratAnim.Play("Rat_Attack_Anim");
+            CoreSystem.instance.PlayerAttacked();
         }
     }
 
@@ -72,6 +75,7 @@ public class Rat_Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        toDestroy = true;
         moveSpeed = 0f;
         ratAnim.Play("Rat_Death_Anim");
         StartCoroutine(DestroyAfterDelay(1f));

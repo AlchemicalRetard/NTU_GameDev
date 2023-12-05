@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa5c7844e10c2974b98be5662d9d5c55
+guid: 98936241acceae441b636deef5250dc1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,169 +123,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rat_Attack_0
+      name: A_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 80
-        width: 15
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d26c88aeb079ec40badf89662c7a9bf
-      internalID: -245959288
+      spriteID: d25c43346b769484b89a76231d8f020a
+      internalID: -1183036727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat_Attack_1
+      name: A_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 80
-        width: 15
-        height: 11
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 17
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98cfbf3a45a2ecf4b9b4e3f7c2442da1
-      internalID: 1645659154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_2
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 80
-        width: 18
-        height: 13
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c0a70a5697e0cd49a37fca8ab5aa2a5
-      internalID: 1694964538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_3
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 82
-        width: 18
-        height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e039deac4bb703c40be174806f850bf5
-      internalID: -559018156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_4
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 16
-        width: 18
-        height: 13
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba882e71b469554488ac232b2bc7ff72
-      internalID: -1490312866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_5
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 16
-        width: 13
-        height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a934cfec1c7390148a4a8e7b25abb53b
-      internalID: 1865992833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_6
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 16
-        width: 13
-        height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4715cfee18baec746aea04d16eea4a78
-      internalID: -1828793027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat_Attack_7
-      rect:
-        serializedVersion: 2
-        x: 217
-        y: 16
-        width: 15
-        height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90e63a64f7bf51e46a3c5e40d908ea2c
-      internalID: 811411401
+      spriteID: f3d90ccba04962f4bb67e9c35aa8d625
+      internalID: -1018953373
       vertices: []
       indices: 
       edges: []
@@ -301,14 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Rat_Attack_0: -245959288
-      Rat_Attack_1: 1645659154
-      Rat_Attack_2: 1694964538
-      Rat_Attack_3: -559018156
-      Rat_Attack_4: -1490312866
-      Rat_Attack_5: 1865992833
-      Rat_Attack_6: -1828793027
-      Rat_Attack_7: 811411401
+      A_0: -1183036727
+      A_1: -1018953373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

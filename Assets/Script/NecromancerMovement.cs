@@ -30,8 +30,6 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
 
     public int health = 3; // Enemy health
     private float lastAttackTime = 0;
-   
-    
 
     void Awake()
     {
@@ -213,6 +211,9 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.75f);
         animator.Play("Necromancer_Death");
         yield return new WaitForSeconds(4.333f);
+        Debug.Log("Necromancer killed!");
+        CoreSystem.setGameEndReason(CoreSystem.GameEndReason.GameClear);
+        CoreSystem.LoadLevel("GameEndScene");
         Destroy(gameObject);
     }
 

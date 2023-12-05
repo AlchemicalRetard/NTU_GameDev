@@ -8,6 +8,7 @@ public class KeyManager : MonoBehaviour
     public int totalKeysCollected = 0;
     public GameObject gate; // Reference to the gate
     public TextMeshProUGUI keyText; // Reference to the TextMeshProUGUI component
+    public GameObject Necromancer;
 
     void Awake()
     {
@@ -15,6 +16,8 @@ public class KeyManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Necromancer.SetActive(false);
     }
 
     public void CollectKey()
@@ -28,7 +31,11 @@ public class KeyManager : MonoBehaviour
     {
         if (keyText != null)
         {
-            keyText.text = "Keys: " + totalKeysCollected;
+            if(CoreSystem.getLanguage() == CoreSystem.Language.English)
+                keyText.text = "Keys: " + totalKeysCollected;
+            else{
+                keyText.text = "鑰匙：" + totalKeysCollected;
+            }
         }
         else
         {
@@ -41,6 +48,7 @@ public class KeyManager : MonoBehaviour
         if (totalKeysCollected >= 2) // Replace 5 with the required number of keys
         {
             OpenGate();
+            Necromancer.SetActive(true);
         }
     }
 
