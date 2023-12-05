@@ -43,21 +43,12 @@ public class DialogueManager : MonoBehaviour
         if (blackScreen != null)
             blackScreen.SetActive(true);
 
-        if(CoreSystem.getLanguage() == CoreSystem.Language.English)
-            nameText.text = dialogue.name;
-        else
-            nameText.text = dialogue.name_ZH;
+        nameText.text = dialogue.name;
         sentences.Clear();
 
-        if(CoreSystem.getLanguage() == CoreSystem.Language.English){
-            foreach (string sentence in dialogue.sentences){
-                sentences.Enqueue(sentence);
-            }
-        }
-        else{
-            foreach (string sentence in dialogue.sentences_ZH){
-                sentences.Enqueue(sentence);
-            }
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
         }
 
         DisplayNextSentence();

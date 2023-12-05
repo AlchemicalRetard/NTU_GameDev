@@ -31,11 +31,7 @@ public class KeyManager : MonoBehaviour
     {
         if (keyText != null)
         {
-            if(CoreSystem.getLanguage() == CoreSystem.Language.English)
-                keyText.text = "Keys: " + totalKeysCollected;
-            else{
-                keyText.text = "鑰匙：" + totalKeysCollected;
-            }
+            keyText.text = "Keys: " + totalKeysCollected;
         }
         else
         {
@@ -48,7 +44,7 @@ public class KeyManager : MonoBehaviour
         if (totalKeysCollected >= 2) // Replace 5 with the required number of keys
         {
             OpenGate();
-            Necromancer.SetActive(true);
+            //Necromancer.SetActive(true);
         }
     }
 
