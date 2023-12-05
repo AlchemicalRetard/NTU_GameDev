@@ -10,6 +10,9 @@ public class MeowMovement : MonoBehaviour
     public AudioClip attackSound;
     public AudioClip meowAttackSound;
 
+    public GameObject dashVFXPrefab; // Assign this in the Inspector
+    public Transform dashVFXPosition;
+
     private AudioSource audioSource;
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,6 +25,12 @@ public class MeowMovement : MonoBehaviour
 
     private float damageCooldown = 1.0f; // 1 second cooldown
     private float lastDamageTime;
+
+    public float dashSpeed = 10f;
+    private float lastDashTime;
+    private float dashCooldown = 2.0f;
+    
+
 
     void Awake()
     {
@@ -36,11 +45,24 @@ public class MeowMovement : MonoBehaviour
         originalGravityScale = rb.gravityScale;
         facingRight = transform.localScale.x > 0;
         audioSource = GetComponent<AudioSource>();
+        lastDashTime = -dashCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            if (Time.time >= lastDashTime + dashCooldown)
+            {
+                Dash();
+                lastDashTime = Time.time;
+            }
+        }
+
+
+
         float x = Input.GetAxis("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(x));
 
@@ -91,6 +113,21 @@ public class MeowMovement : MonoBehaviour
 
         Debug.DrawRay(transform.position, new Vector3(facingRight ? 1 : -1, 0, 0) * 1.5f, Color.red);
     }
+
+    private void Dash()
+    {
+        float direction = facingRight ? 1f : -1f;
+        rb.AddForce(new Vector2(direction * dashSpeed, 0), ForceMode2D.Impulse);
+
+        // Instantiate dash VFX
+        if (dashVFXPrefab != null && dashVFXPosition != null)
+        {
+            GameObject dashVFX = Instantiate(dashVFXPrefab, dashVFXPosition.position, Quaternion.identity);
+            Destroy(dashVFX, 1.0f); // Destroy the VFX after 1 second
+        }
+
+    }
+
 
     void OnCollisionExit2D(Collision2D collision)
     {
