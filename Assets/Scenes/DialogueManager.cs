@@ -7,6 +7,8 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+
+    public GameObject dialogueUI;
     private DuringDialogue otherScripts;
     public TMP_Text nameText;
     public TMP_Text dialogueText;
@@ -29,6 +31,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        if (dialogueUI != null)
+            dialogueUI.SetActive(true);
         otherScripts.PauseGameplay();
         if (blackScreen != null)
             blackScreen.SetActive(true);
@@ -58,8 +62,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        if (blackScreen != null)
-            blackScreen.SetActive(false); // Deactivate black screen when dialogue ends
+        if (dialogueUI != null)
+            dialogueUI.SetActive(false);
         otherScripts.ResumeGameplay();
         Debug.Log("End of conversation.");
     }
