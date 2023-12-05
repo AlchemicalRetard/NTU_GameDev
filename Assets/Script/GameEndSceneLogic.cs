@@ -45,6 +45,10 @@ public class GameEndSceneLogic : MonoBehaviour
                 titleText.text = "Tutorial clear!";
                 StartCoroutine("goodEnd");
                 break;
+            case CoreSystem.GameEndReason.GameClear:
+                titleText.text = "Game clear!";
+                StartCoroutine("goodEnd");
+                break;
             default:
                 titleText.text = "Game end!";
                 StartCoroutine("goodEnd");

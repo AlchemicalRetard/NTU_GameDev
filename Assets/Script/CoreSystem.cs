@@ -10,7 +10,8 @@ public class CoreSystem : MonoBehaviour
         Undefined = -1,
         PlayerDead = 0,
         TimeUp = 1,
-        TutorialClear = 2
+        TutorialClear = 2,
+        GameClear = 3
     }
 
     public enum Language

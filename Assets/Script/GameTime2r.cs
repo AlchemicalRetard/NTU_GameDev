@@ -63,18 +63,20 @@ public class GameTime2r : MonoBehaviour
         // If time's up and the level is not cleared, pause the game
         if (!FoodCounter.Instance.AllFoodCollected())
         {
-            PauseGame();
+            CoreSystem.setGameEndReason(CoreSystem.GameEndReason.TimeUp);
+            CoreSystem.LoadLevel("GameEndScene");
+            // PauseGame();
         }
 
         Debug.Log("Time's Up! Game Over!");
     }
 
-    void PauseGame()
-    {
-        Time.timeScale = 0;  // This will pause the game
-        // You can display a message to the player or bring up a menu here
-        Debug.Log("Game Paused because the level was not cleared in time.");
-    }
+    // void PauseGame()
+    // {
+    //     Time.timeScale = 0;  // This will pause the game
+    //     // You can display a message to the player or bring up a menu here
+    //     Debug.Log("Game Paused because the level was not cleared in time.");
+    // }
 
     IEnumerator addTimeAnimation(int timeToAdd){
         while(timeToAdd > 0){
