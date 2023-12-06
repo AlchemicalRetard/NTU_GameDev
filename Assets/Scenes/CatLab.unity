@@ -152,8 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c19a978af18b4b8826e345dac369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: []
-  foodItemsForNextStage: 0
 --- !u!4 &31593292
 Transform:
   m_ObjectHideFlags: 0

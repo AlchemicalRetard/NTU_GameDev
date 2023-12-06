@@ -12,8 +12,10 @@ public class DialogueManager : MonoBehaviour
     private DuringDialogue otherScripts;
     public TMP_Text nameText;
     public TMP_Text dialogueText;
+    public GameObject diaologueScreen; // Reference to the black screen GameObject
     public GameObject blackScreen; // Reference to the black screen GameObject
     public Dialogue firstDialogue;  // Assign the first dialogue in the Inspector
+    public Image dialogueImageUI;
 
     private Queue<string> sentences;
 
@@ -33,25 +35,20 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueUI != null)
             dialogueUI.SetActive(true);
+
+        if (dialogue.specificBlackScreen != null)
+            dialogue.specificBlackScreen.SetActive(true);
+
         otherScripts.PauseGameplay();
         if (blackScreen != null)
             blackScreen.SetActive(true);
 
-        if(CoreSystem.getLanguage() == CoreSystem.Language.English)
-            nameText.text = dialogue.name;
-        else
-            nameText.text = dialogue.name_ZH;
+        nameText.text = dialogue.name;
         sentences.Clear();
 
-        if(CoreSystem.getLanguage() == CoreSystem.Language.English){
-            foreach (string sentence in dialogue.sentences){
-                sentences.Enqueue(sentence);
-            }
-        }
-        else{
-            foreach (string sentence in dialogue.sentences_ZH){
-                sentences.Enqueue(sentence);
-            }
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
         }
 
         DisplayNextSentence();
