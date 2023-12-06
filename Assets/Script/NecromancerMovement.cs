@@ -75,6 +75,10 @@ public class NecromancerMovement : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        //Don't move or do other thing when being destroyed!
+        if(toDestroy)
+            return;
+
         //Check if player is out of turnAroundDistance
         float distanceToPlayer = player.transform.position.x - transform.position.x;
         if (Mathf.Abs(distanceToPlayer) > turnAroundDistance)
