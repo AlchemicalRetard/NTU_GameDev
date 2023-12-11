@@ -1047,7 +1047,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2106242588}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 35219161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4559,7 +4559,7 @@ Transform:
   m_GameObject: {fileID: 299186282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.600005, y: -13.284679, z: -10}
+  m_LocalPosition: {x: -4.5798993, y: -0.66445, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4829,6 +4829,83 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7620157050599774514, guid: fdb59a14578e9bb409271b082c361501, type: 3}
   m_PrefabInstance: {fileID: 336518610}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &339809482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339809483}
+  - component: {fileID: 339809485}
+  m_Layer: 0
+  m_Name: NecromancerIntroduction
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &339809483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339809482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.26, y: -11.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1464393588}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &339809485
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339809482}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.997869, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.4914007, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &352613905
 GameObject:
   m_ObjectHideFlags: 0
@@ -10212,7 +10289,7 @@ Transform:
   m_GameObject: {fileID: 794750578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6000004, y: -15.2, z: -10}
+  m_LocalPosition: {x: -7.6000004, y: -1.11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12972,7 +13049,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 941831792038555250, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 148075992}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed53dac5ab8472149b7b32fa38d5a23e, type: 3}
 --- !u!1 &1248958168
@@ -14228,6 +14308,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1764015447}
+  - {fileID: 339809483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476057533
@@ -20352,7 +20433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1764015447}
   - component: {fileID: 1764015449}
-  - component: {fileID: 1764015448}
   - component: {fileID: 1764015450}
   m_Layer: 0
   m_Name: KeysDialogue
@@ -20376,24 +20456,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1464393588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1764015448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764015446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e958a38d05086554fac73347a9b853f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screen: {fileID: 0}
-  dialogue:
-    name: The Game
-    sentences:
-    - Collect all the keys to go down to the boss fight!!!!
-    specificBlackScreen: {fileID: 1114011869}
 --- !u!61 &1764015449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22369,7 +22431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8340371543084686613, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.2
+      value: -1.11
       objectReference: {fileID: 0}
     - target: {fileID: 8340371543084686613, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23017,4 +23079,3 @@ SceneRoots:
   - {fileID: 1519491567}
   - {fileID: 179770967}
   - {fileID: 1476057535}
-  - {fileID: 148075992}
