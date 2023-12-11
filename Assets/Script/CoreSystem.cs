@@ -33,6 +33,8 @@ public class CoreSystem : MonoBehaviour
     static private LevelLoader levelLoader;
     static private Language language = Language.Chinese;
     static public CoreSystem instance; // For non-static reference to this script
+    static public string clearTime = "00:00";
+    static public int heartLeft = 0;
 
     void Awake()
     {
@@ -168,6 +170,8 @@ public class CoreSystem : MonoBehaviour
 
     static public void LoadLevel(string levelName)
     {
+        clearTime = gameTime2r.getClearTime();
+        heartLeft = playerHealth;
         levelLoader.LoadLevel(levelName);
     }
 

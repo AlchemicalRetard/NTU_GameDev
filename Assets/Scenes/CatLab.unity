@@ -101740,7 +101740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1357546061752931657, guid: 73cab950614bbda43aef37c237ead353, type: 3}
       propertyPath: timeLimit
-      value: 60
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1357546061752931657, guid: 73cab950614bbda43aef37c237ead353, type: 3}
       propertyPath: timerText

@@ -85,4 +85,13 @@ public class GameTime2r : MonoBehaviour
             timeToAdd--;
         }
     }
+
+    public string getClearTime(){
+        int temp = (int)(timeLimit - timeRemaining);
+        //make sure it is between 0 and timeLimit
+        temp = Mathf.Clamp(temp, 0, (int)timeLimit);
+        int minutes = temp / 60;
+        int seconds = temp % 60;
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
 }
