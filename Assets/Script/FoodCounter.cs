@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class FoodCounter : MonoBehaviour
@@ -6,7 +7,7 @@ public class FoodCounter : MonoBehaviour
     public static FoodCounter Instance;
     public TextMeshProUGUI foodCountText;
     public AudioClip collectSound;
-
+    public GameObject[] foodsIcon;
 
     private int totalFood = 0;
     private int collectedFood = 0;  // Track the number of collected food items
@@ -30,6 +31,12 @@ public class FoodCounter : MonoBehaviour
         // Count the total number of food items in the scene
         totalFood = GameObject.FindGameObjectsWithTag("Food").Length;  // Assuming the food items are tagged as "Food"
         foodCountText.text = " x " + collectedFood + " / " + totalFood;
+
+        // change all food icon to be transparent
+        foreach (GameObject foodIcon in foodsIcon)
+        {
+            foodIcon.GetComponent<RawImage>().color = new Color(1f, 1f, 1f, 0.5f);
+        }
     }
 
     void Start()
@@ -47,6 +54,12 @@ public class FoodCounter : MonoBehaviour
         collectedFood += amount;
         audioSource.PlayOneShot(collectSound);
         Debug.Log("Food : " + collectedFood);
+
+        // change the food icon to be opaque
+        for(int i = 0; i < collectedFood; i++)
+        {
+            foodsIcon[i].GetComponent<RawImage>().color = new Color(1f, 1f, 1f, 1f);
+        }
 
         UpdateFoodCountText();
     }
