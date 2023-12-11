@@ -8,19 +8,43 @@ public class superJump : MonoBehaviour
     private MeowMovement jump;
     public float jumpHeight;
     public GameObject playerCat;
+
+    static private bool enabled = true; //make it static, so every jump block will disabled at the same time
+    private SpriteRenderer spriteRenderer;
+    private float targetAlpha = 1f;
+
     void Start()
     {
         jump = playerCat.GetComponent<MeowMovement>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(enabled){
+            targetAlpha = 1f;
+        }else{
+            targetAlpha = 0.3f;
+        }
+
+        Color c = spriteRenderer.color;
+            if((!enabled && spriteRenderer.color.a > 0.301f) || (enabled && spriteRenderer.color.a < 0.999f))
+            {
+                c = spriteRenderer.color;
+                //lerp alpha to zero
+                c.a = Mathf.Lerp(c.a, targetAlpha, 0.16f);
+                spriteRenderer.color = c;
+            }else{
+                c = spriteRenderer.color;
+                c.a = targetAlpha;
+                spriteRenderer.color = c;
+            }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && enabled)
         {
             StartCoroutine(JumpTime());
         }
@@ -28,17 +52,34 @@ public class superJump : MonoBehaviour
     
     IEnumerator JumpTime()
     {
+        enabled = false;
+
         jump.jumpHeight = jumpHeight; // changing the jump height here
-        Debug.Log("touhed");
+        Debug.Log("touhed: " + Time.time);
         yield return new WaitForSeconds(jumpDuration);  
 
         jump.jumpHeight = 3f; // return jump height to normal
 
+        enabled = true;
+
     }
 
-    /*private void OnCollisionExit2D(Collision2D collision)
+    IEnumerator Fade()
     {
-        jump.jumpHeight = 3f;
-    }*/
-
+        Color c = spriteRenderer.color;
+        //yes, this is an infinite loop to always change the alpha value
+        while(true){
+            while((!enabled && spriteRenderer.color.a > 0.501f) || (enabled && spriteRenderer.color.a < 0.999f))
+            {
+                c = spriteRenderer.color;
+                //lerp alpha to zero
+                c.a = Mathf.Lerp(c.a, targetAlpha, 0.3f);
+                spriteRenderer.color = c;
+                yield return new WaitForSeconds(0.01f);
+            }
+            c = spriteRenderer.color;
+            c.a = targetAlpha;
+            spriteRenderer.color = c;
+        }
+    }
 }

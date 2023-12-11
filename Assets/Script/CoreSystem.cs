@@ -23,6 +23,7 @@ public class CoreSystem : MonoBehaviour
     public GameObject healthBar;
     public GameObject timer;
     public GameObject levelLoaderObject;
+    public MeowMovement playerScript; // Reference to the player object
     public Animator playerAnimator; // Reference to the Animator component on the player
 
     static private int playerHealth = 3;
@@ -119,8 +120,7 @@ public class CoreSystem : MonoBehaviour
         if (playerHealth <= 0)
         {
             Debug.Log("Player is dead");
-            gameEndReason = GameEndReason.PlayerDead;
-            LoadLevel("GameEndScene");
+            StartCoroutine(PlayerDie());
         }
         else
         {
@@ -132,6 +132,15 @@ public class CoreSystem : MonoBehaviour
                 // StartCoroutine(ResetHurtStateAfterDelay(1f)); // 2 seconds for the hurt animation to play
             }
         }
+    }
+
+    IEnumerator PlayerDie()
+    {
+        playerScript.Die();
+        //playerAnimator.Play("Meow-Knight_Death");
+        gameEndReason = GameEndReason.PlayerDead;
+        yield return new WaitForSeconds(0.5f);
+        LoadLevel("GameEndScene");
     }
 
     // private IEnumerator ResetHurtStateAfterDelay(float delay)

@@ -20,6 +20,7 @@ public class MeowMovement : MonoBehaviour
     private float originalGravityScale;
     private bool isGrounded = false;
     private bool isOnEnemy = false;
+    private bool isAlive = true;
     [HideInInspector] public bool isAttacking = false;
     private LayerMask mask;
 
@@ -51,6 +52,11 @@ public class MeowMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.O))
         {
@@ -210,5 +216,10 @@ public class MeowMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         isAttacking = false;
+    }
+
+    public void Die()
+    {
+        isAlive = false;
     }
 }
