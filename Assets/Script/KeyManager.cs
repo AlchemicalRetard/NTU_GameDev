@@ -11,6 +11,9 @@ public class KeyManager : MonoBehaviour
     // public TextMeshProUGUI keyText; // Reference to the TextMeshProUGUI component
     public GameObject Necromancer;
     public GameObject[] keysIcon; // Reference to the key icons
+    public AudioClip collectSound;
+
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -20,6 +23,7 @@ public class KeyManager : MonoBehaviour
         }
 
         Necromancer.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
 
         //make all key icons transparent
         foreach (GameObject keyIcon in keysIcon)
@@ -38,6 +42,7 @@ public class KeyManager : MonoBehaviour
         {
             keysIcon[i].GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
+        audioSource.PlayOneShot(collectSound);
 
         CheckKeys();
     }
