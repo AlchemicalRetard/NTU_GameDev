@@ -1,15 +1,15 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
     public GameObject screen;
     public Dialogue dialogue;
 
-    /* public void TriggerDialogue()
+    *//* public void TriggerDialogue()
      {
          screen.SetActive(true);
          FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-     }*/
+     }*//*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -19,4 +19,4 @@ public class DialogueTrigger : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-}
+}*/

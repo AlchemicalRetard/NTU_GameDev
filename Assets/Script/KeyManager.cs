@@ -15,6 +15,7 @@ public class KeyManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public CameraController cameraController;
     void Awake()
     {
         if (instance == null)
@@ -61,9 +62,10 @@ public class KeyManager : MonoBehaviour
 
     void CheckKeys()
     {
-        if (totalKeysCollected >= 2) // Replace 5 with the required number of keys
+        if (totalKeysCollected >= 3) // Replace 5 with the required number of keys
         {
             OpenGate();
+            cameraController.ShowObjective();
             //Necromancer.SetActive(true);
         }
     }
