@@ -17,6 +17,10 @@ public class KeyManager : MonoBehaviour
     private AudioSource audioSource;
 
     public CameraController cameraController;
+
+    public GameObject IsDangerousHint;
+    public GameObject FinallyHint;
+    
     void Awake()
     {
         if (instance == null)
@@ -32,6 +36,9 @@ public class KeyManager : MonoBehaviour
         {
             keyIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
         }
+
+        IsDangerousHint.SetActive(true);
+        FinallyHint.SetActive(false);
     }
 
     public void CollectKey()
@@ -75,5 +82,7 @@ public class KeyManager : MonoBehaviour
     {
         // Logic to open the gate
         gate.SetActive(false);
+        IsDangerousHint.SetActive(false);
+        FinallyHint.SetActive(true);
     }
 }
