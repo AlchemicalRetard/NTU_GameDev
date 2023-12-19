@@ -9,6 +9,8 @@ public class GameTime2r : MonoBehaviour
     public TextMeshProUGUI timerText;
     public bool timerIsRunning = false;
     public bool pauseTimerForDialogue = false;  // New variable to control timer during dialogues
+    
+    private int bonusTime = 0;
 
     private void Start()
     {
@@ -41,6 +43,7 @@ public class GameTime2r : MonoBehaviour
     public void addTime(int timeToAdd)
     {
         StartCoroutine("addTimeAnimation", timeToAdd);
+        bonusTime += timeToAdd;
     }
 
     public bool IsTimeUp()
@@ -88,6 +91,7 @@ public class GameTime2r : MonoBehaviour
 
     public string getClearTime(){
         int temp = (int)(timeLimit - timeRemaining);
+        temp += bonusTime;
         //make sure it is between 0 and timeLimit
         temp = Mathf.Clamp(temp, 0, (int)timeLimit);
         int minutes = temp / 60;

@@ -179,7 +179,9 @@ public class CoreSystem : MonoBehaviour
 
     static public void LoadLevel(string levelName)
     {
-        clearTime = gameTime2r.getClearTime();
+        if(gameTime2r != null){
+            clearTime = gameTime2r.getClearTime();
+        }
         heartLeft = playerHealth;
         levelLoader.LoadLevel(levelName);
     }
