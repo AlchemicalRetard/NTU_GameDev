@@ -21,14 +21,13 @@ public class EnemyHealthBar : MonoBehaviour
     {
         if (necromancer != null)
         {
-            float healthPercentage = necromancer.health / maxHealth;
+            float healthPercentage = Mathf.Max(0, necromancer.health / maxHealth);
             UpdateHealthBar(healthPercentage);
         }
     }
 
     private void UpdateHealthBar(float percentage)
     {
-        healthBarFill.fillAmount = percentage;
-        healthBarFill.rectTransform.localPosition = new Vector3((1 - percentage) * healthBarFill.rectTransform.sizeDelta.x / 2, 0, 0);
+        healthBarFill.rectTransform.transform.localScale = new Vector3(percentage, 1, 1);
     }
 }

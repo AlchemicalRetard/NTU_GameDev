@@ -154,6 +154,10 @@ MonoBehaviour:
   maxSpeed: 5
   attackSound: {fileID: 8300000, guid: 67f58f2ffc5cdef40b626ebc07e8c270, type: 3}
   meowAttackSound: {fileID: 8300000, guid: a0b7f052c8422174f87c1c0e769677b0, type: 3}
+  dashVFXPrefab: {fileID: 0}
+  dashVFXPosition: {fileID: 0}
+  isAttacking: 0
+  dashSpeed: 10
 --- !u!70 &5045133551323496265
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

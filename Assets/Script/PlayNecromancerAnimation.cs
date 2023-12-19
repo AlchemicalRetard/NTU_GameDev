@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayKeyAnimation : MonoBehaviour
+public class PlayNecromancerAnimation : MonoBehaviour
 
 {
     public Animator anim;
@@ -40,8 +40,7 @@ public class PlayKeyAnimation : MonoBehaviour
     IEnumerator ResumeAfterAnimation()
     {
         // Wait for the animation to finish (adjust the duration accordingly)
-        // yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
         // Resume gameplay elements
         if (duringDialogue != null)

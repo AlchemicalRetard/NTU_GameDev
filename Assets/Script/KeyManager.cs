@@ -7,6 +7,7 @@ public class KeyManager : MonoBehaviour
     public static KeyManager instance;
 
     public int totalKeysCollected = 0;
+    public int totalKeysRequired = 4;
     public GameObject gate; // Reference to the gate
     // public TextMeshProUGUI keyText; // Reference to the TextMeshProUGUI component
     public GameObject Necromancer;
@@ -62,7 +63,7 @@ public class KeyManager : MonoBehaviour
 
     void CheckKeys()
     {
-        if (totalKeysCollected >= 3) // Replace 5 with the required number of keys
+        if (totalKeysCollected == totalKeysRequired) // Replace 5 with the required number of keys
         {
             OpenGate();
             cameraController.ShowObjective();
