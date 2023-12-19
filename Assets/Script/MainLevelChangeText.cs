@@ -5,18 +5,15 @@ using TMPro;
 
 public class MainLevelChangeText : MonoBehaviour
 {
-    public TextMeshProUGUI goDownText;
-    public TextMeshProUGUI jumpHintText;
+    public TextMeshProUGUI collectKeyHintText;
 
     void Awake()
     {
         if(CoreSystem.getLanguage() == CoreSystem.Language.Chinese){
-            goDownText.text = "收集所有鑰匙即可通過！";
-            jumpHintText.text = "獲得四秒跳高高的能力！";
+            collectKeyHintText.text = "收集所有鑰匙，撃敗暗影惡魔！";
         }
         else{
-            goDownText.text = "Collect All the keys to go Down!!!!!";
-            jumpHintText.text = "Touch This block to get SuperJump Power for 4 seconds!!!";
+            collectKeyHintText.text = "To Enter New Boss Fight Collect All Keys!!";
         }
 
         CoreSystem.setLastSelectedLevelName("BackGround21");

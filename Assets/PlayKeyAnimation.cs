@@ -40,7 +40,8 @@ public class PlayKeyAnimation : MonoBehaviour
     IEnumerator ResumeAfterAnimation()
     {
         // Wait for the animation to finish (adjust the duration accordingly)
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        // yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(5);
 
         // Resume gameplay elements
         if (duringDialogue != null)

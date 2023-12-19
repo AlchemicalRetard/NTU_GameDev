@@ -451,6 +451,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1950507821}
     m_Modifications:
+    - target: {fileID: 58053932054492168, guid: 8acdb917f974c53498bf42497b54bd89, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+    - target: {fileID: 58053932054492168, guid: 8acdb917f974c53498bf42497b54bd89, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4406535271551347350, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+    - target: {fileID: 58053932054492168, guid: 8acdb917f974c53498bf42497b54bd89, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 874626466654829643, guid: 8acdb917f974c53498bf42497b54bd89, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4534,7 +4546,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.38
+  orthographic size: 4.19
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4559,7 +4571,7 @@ Transform:
   m_GameObject: {fileID: 299186282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.21, y: -2.46, z: -222.34085}
+  m_LocalPosition: {x: -4.5798993, y: -0.66445, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5698,10 +5710,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TO Enter New Boss Fight Collect All Keys!!
+  m_text: To Enter New Boss Fight Collect All Keys!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6296c71468337f44288a412c2f9656e3, type: 2}
-  m_sharedMaterial: {fileID: 5716832132350789059, guid: 6296c71468337f44288a412c2f9656e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+  m_sharedMaterial: {fileID: -4406535271551347350, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9511,7 +9523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &638727733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9553,8 +9565,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Collect All the keys to go Down!!!!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
-  m_sharedMaterial: {fileID: 831659930089034469, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9946,7 +9958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &731137379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10779,6 +10791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839291093}
   - component: {fileID: 839291092}
+  - component: {fileID: 839291094}
   m_Layer: 0
   m_Name: CoreSystem
   m_TagString: Untagged
@@ -10818,6 +10831,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839291094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839291091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8338c7c7c96e9d140bd2f2b5432ffc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectKeyHintText: {fileID: 520379584}
 --- !u!1 &840547896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3078404425350434135, guid: aa84a66f348b61e4ebbb431692f13ca3, type: 3}
@@ -13855,7 +13881,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 119.00006, y: -205}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1417186565
 CanvasRenderer:
@@ -13887,8 +13913,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+  m_sharedMaterial: {fileID: -4406535271551347350, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13912,13 +13938,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -14861,10 +14887,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -20405,8 +20431,10 @@ MonoBehaviour:
   screen: {fileID: 0}
   dialogue:
     name: SAYA
+    name_ZH: 
     sentences:
     - 
+    sentences_ZH: []
     specificBlackScreen: {fileID: 0}
 --- !u!4 &1763362724
 Transform:
@@ -20777,6 +20805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1357546061752931657, guid: 73cab950614bbda43aef37c237ead353, type: 3}
+      propertyPath: timeLimit
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 1357546061752931657, guid: 73cab950614bbda43aef37c237ead353, type: 3}
       propertyPath: timerText
       value: 
@@ -21826,8 +21858,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6296c71468337f44288a412c2f9656e3, type: 2}
-  m_sharedMaterial: {fileID: 5716832132350789059, guid: 6296c71468337f44288a412c2f9656e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
+  m_sharedMaterial: {fileID: -4406535271551347350, guid: ccac7d7482013f045b19959b01db9a9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21851,13 +21883,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -22759,9 +22791,14 @@ MonoBehaviour:
   blackScreen: {fileID: 1037891311}
   firstDialogue:
     name: The World Tree
+    name_ZH: "\u4E16\u754C\u6A39"
     sentences:
     - 'In a realm blessed by the World Tree, a kingdom thrived in joy and plenty... '
     - ...until Saya, a dark shadow, cursed the World Tree.
+    sentences_ZH:
+    - "\u732B\u732B\u738B\u570B\u662F\u500B\u5E73\u548C\u7E41\u76DB\u7684\u5730\u65B9\u3002<br>\u5728\u4E16\u754C\u6A39\u7684\u5E87\u4F51\u4E4B\u4E0B\uFF0C\u5927\u5BB6\u90FD\u5B89\u5C45\u6A02\u696D..."
+    - "...\u7136\u800C\u597D\u666F\u4E0D\u9577\u3002"
+    - "\u6697\u5F71\u60E1\u9B54\u8A5B\u5492\u4E86\u4E16\u754C\u6A39\uFF0C<br>\u732B\u732B\u738B\u570B\u56E0\u6B64\u9677\u5165\u6C34\u6DF1\u706B\u71B1\u4E4B\u4E2D\uFF01"
     specificBlackScreen: {fileID: 1037891311}
   dialogueImageUI: {fileID: 0}
 --- !u!114 &2136055184
